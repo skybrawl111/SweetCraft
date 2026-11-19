@@ -119,3 +119,8 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('base_cake', 'customer', 'rating', 'created_at')
     list_filter = ('rating', 'created_at')
     search_fields = ('base_cake__title', 'customer__username', 'text')
+
+admin.site.site_header = "SweetCraft: Панель администрирования"
+admin.site.site_title = "SweetCraft Администрирование"
+admin.site.index_title = "Управление кондитерской SweetCraft"
+

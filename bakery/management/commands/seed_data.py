@@ -44,11 +44,11 @@ class Command(BaseCommand):
         self.stdout.write(f"Categories created: {len(cat_objs)}")
 
         # 2. Создание пользователей с ролями
-        admin, _ = CustomUser.objects.get_or_create(
+        admin, created = CustomUser.objects.get_or_create(
             username='admin',
             defaults={
-                'first_name': 'Александр',
-                'last_name': 'Администраторов',
+                'first_name': 'Чошгун',
+                'last_name': 'Адилов',
                 'email': 'admin@sweetcraft.local',
                 'role': 'admin',
                 'is_staff': True,
@@ -56,6 +56,8 @@ class Command(BaseCommand):
                 'phone': '+7 (999) 111-22-33'
             }
         )
+        admin.first_name = 'Чошгун'
+        admin.last_name = 'Адилов'
         admin.set_password('admin123')
         admin.save()
 
