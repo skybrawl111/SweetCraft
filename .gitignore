@@ -17,6 +17,14 @@ media/
 
 # Environment secrets
 .env
+.env.example
+env.example
+*.env.example
+
+# Documentation, reports, scripts and assets
+docs/
+scripts/
+assets/
 ~$*.docx
 ~$*.doc
 
