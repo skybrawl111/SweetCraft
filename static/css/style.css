@@ -59,6 +59,11 @@ html {
   scroll-behavior: smooth;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--bg-body);
@@ -1712,6 +1717,11 @@ body {
 
 /* Точка 768px (Планшеты вертикальные и мобильные) */
 @media (max-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .nav-toggle {
     display: flex;
   }
@@ -1758,41 +1768,127 @@ body {
 
   .hero {
     flex-direction: column;
-    padding: 30px 20px;
+    padding: 26px 18px;
     text-align: center;
+    border-radius: var(--radius-md);
+    margin-bottom: 30px;
+  }
+
+  .hero-text {
+    max-width: 100%;
   }
 
   .hero-title {
-    font-size: 26px;
+    font-size: 24px;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    margin-bottom: 20px;
   }
 
   .hero-actions {
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .hero-cake-badge {
-    font-size: 70px;
-    margin-top: 20px;
+    font-size: 64px;
+    margin-top: 16px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-header .btn {
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 20px;
+    word-break: break-word;
   }
 
   .features-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cakes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .catalog-layout {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cake-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .reviews-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .builder-layout {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .decor-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .order-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .order-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
   }
 
   .live-summary-sticky {
@@ -1807,6 +1903,7 @@ body {
   .footer-grid {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 24px;
   }
 
   .footer-contacts {
@@ -1814,11 +1911,50 @@ body {
   }
 }
 
+/* Точка 360–480px (Смартфоны) */
+@media (max-width: 480px) {
+  .brand-badge {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: 19px;
+  }
+
+  .hero {
+    padding: 20px 14px;
+  }
+
+  .hero-title {
+    font-size: 21px;
+  }
+
+  .hero-cake-badge {
+    font-size: 56px;
+  }
+
+  .btn {
+    min-height: 44px; /* Apple HIG touch target */
+  }
+
+  .filter-card {
+    padding: 16px 14px;
+  }
+
+  .builder-step-card {
+    padding: 18px 14px;
+  }
+
+  .cake-card-body {
+    padding: 16px 14px;
+  }
+}
+
 /* Точка 360–375px (Смартфоны) */
 @media (max-width: 375px) {
   .container {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .brand-name {
@@ -1826,7 +1962,7 @@ body {
   }
 
   .hero-title {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .hero-actions .btn {
