@@ -1,0 +1,37 @@
+<mxfile host="Electron" modified="2026-11-17T21:00:00.000Z" agent="Antigravity" version="21.6.8" type="device">
+  <diagram id="site_struct_sweetcraft" name="SweetCraft Site Structure">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="root1" value="1. Главная страница (Витрина)&#xa;URL: /&#xa;[Доступ: Гость, Покупатель]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#4A2C11;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="460" y="40" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="cat1" value="2. Каталог десертов&#xa;URL: /catalog/&#xa;[Гость, Покупатель]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="180" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bld1" value="3. Онлайн-конструктор торта&#xa;URL: /builder/&#xa;[Особое требование Варианта 1]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#B45309;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="180" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ord1" value="4. Корзина и Заказы&#xa;URL: /checkout/&#xa;[Покупатель]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="180" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="adm1" value="5. Цех и Управление&#xa;URL: /confectioner/shifts/&#xa;[Кондитер, Менеджер]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E7FF;strokeColor=#4F46E5;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="180" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="root1" target="cat1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#4A2C11;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="root1" target="bld1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#4A2C11;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="root1" target="ord1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#4A2C11;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="root1" target="adm1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#4A2C11;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

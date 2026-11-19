@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" modified="2026-11-11T20:00:00.000Z" agent="5.0" version="21.0.0" type="device">
+  <diagram id="BPMN_Order_AsIs" name="BPMN_Order_AsIs">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="480" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_cust" value="Клиент (Покупатель)" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=#F0FDF4;strokeColor=#4A5568;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="30" width="1060" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_mgr" value="Менеджер по заказам" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=#EFF6FF;strokeColor=#4A5568;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="160" width="1060" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_chef" value="Шеф-кондитер цеха" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=#FEF3C7;strokeColor=#4A5568;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="310" width="1060" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="start_1" value="Потребность
+в торте" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#D4EDDA;strokeColor=#28A745;strokeWidth=2;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_cust">
+          <mxGeometry x="50" y="40" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="task_c1" value="Написать сообщение
+в WhatsApp с фото" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_cust">
+          <mxGeometry x="130" y="35" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_m1" value="Прочитать чат и
+задать вопросы" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_mgr">
+          <mxGeometry x="280" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_c2" value="Ответить на вопросы
+о весе и вкусе" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_cust">
+          <mxGeometry x="420" y="35" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_m2" value="Рассчитать цену
+на калькуляторе" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_mgr">
+          <mxGeometry x="570" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_m3" value="Уточнить дату
+лично в цеху" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_mgr">
+          <mxGeometry x="710" y="40" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_k1" value="Посмотреть записи
+в тетради смен" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_chef">
+          <mxGeometry x="710" y="35" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gw_agree" value="Клиент
+согласен?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3CD;strokeColor=#856404;strokeWidth=1.5;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_mgr">
+          <mxGeometry x="840" y="45" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="end_reject" value="Отказ
+из-за цены" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8D7DA;strokeColor=#DC3545;strokeWidth=3;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_mgr">
+          <mxGeometry x="840" y="105" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="task_c3" value="Перевести аванс
+по номеру телефона" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_cust">
+          <mxGeometry x="910" y="35" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_m4" value="Проверить чек
+и выписать стикер" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_mgr">
+          <mxGeometry x="910" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="end_1" value="Заказ в цеху
+на стикере" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8D7DA;strokeColor=#DC3545;strokeWidth=3;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_chef">
+          <mxGeometry x="945" y="40" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="start_1" target="task_c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_c1" target="task_m1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_m1" target="task_c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_c2" target="task_m2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_m2" target="task_m3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_m3" target="task_k1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_k1" target="gw_agree">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="gw_agree" target="end_reject">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="gw_agree" target="task_c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_c3" target="task_m4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_m4" target="end_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

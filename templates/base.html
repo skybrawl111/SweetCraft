@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Кондитерская «SweetCraft» — Заказ авторских тортов{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- Шапка сайта (Header) -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="{% url 'home' %}" class="brand">
+        🎂 SweetCraft
+        <span class="brand-badge">Кондитерская</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="{% url 'home' %}" class="nav-link">Главная</a></li>
+          <li><a href="{% url 'catalog' %}" class="nav-link">Каталог десертов</a></li>
+          <li><a href="{% url 'cake_builder' %}" class="nav-link" style="color: var(--primary); font-weight: 700;">✨ Конструктор торта</a></li>
+          
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'order_list' %}" class="nav-link">Мои заказы</a></li>
+            {% if user.is_manager_or_admin or user.role == 'confectioner' %}
+              <li><a href="{% url 'dashboard' %}" class="nav-link" style="color: var(--accent); font-weight: 700;">📊 Сводные показатели</a></li>
+              <li><a href="{% url 'admin:index' %}" class="nav-link" target="_blank">Админка</a></li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </nav>
+
+      <div class="nav-auth">
+        {% if user.is_authenticated %}
+          <div class="user-badge">
+            <a href="{% url 'profile' %}" style="text-decoration:none; color:inherit; font-weight:600;">
+              👤 {{ user.first_name|default:user.username }}
+            </a>
+            <span class="role-pill">{{ user.get_role_display }}</span>
+          </div>
+          <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Выйти</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Регистрация</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <!-- Блок сообщений (Flash Messages) -->
+  <div class="container messages-container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <!-- Основной контент страницы -->
+  <main class="main-content">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- Подвал (Footer) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 style="color:#FFF; margin-bottom:12px;">🎂 Кондитерская «SweetCraft»</h3>
+          <p style="font-size:13px; line-height:1.6;">
+            Изготовление заказных тортов и крафтовых десертов под ваши параметры.<br>
+            Автоматический контроль загрузки цеха гарантирует 100% готовность к вашему празднику.
+          </p>
+        </div>
+        <div>
+          <h4 style="color:#FFF; margin-bottom:12px;">Разделы</h4>
+          <ul style="list-style:none; line-height:2;">
+            <li><a href="{% url 'catalog' %}">Каталог десертов</a></li>
+            <li><a href="{% url 'cake_builder' %}">Онлайн-конструктор</a></li>
+            <li><a href="{% url 'order_list' %}">Отслеживание заказа</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#FFF; margin-bottom:12px;">Контакты цеха</h4>
+          <p style="font-size:13px; line-height:1.8;">
+            📍 г. Москва, ул. Арбат, д. 25<br>
+            📞 +7 (495) 123-45-67<br>
+            ⏰ Ежедневно с 8:00 до 21:00
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Учебный проект по производственной практике (4 курс). Вариант № 1: «Заказ тортов и десертов в кондитерской». Разработано на Django 5.x.
+      </div>
+    </div>
+  </footer>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

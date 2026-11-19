@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль пользователя — Кондитерская «SweetCraft»{% endblock %}
+
+{% block content %}
+  <div class="section-header">
+    <div>
+      <h1 class="section-title">Профиль пользователя: {{ user.username }}</h1>
+      <p style="color: var(--text-muted); font-size: 14px;">Личные данные, роль и управление учётной записью</p>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="{% url 'password_change' %}" class="btn btn-secondary btn-sm">Сменить пароль (п. 3)</a>
+    </div>
+  </div>
+
+  <div class="builder-layout">
+    <div>
+      <div class="builder-card">
+        <h2 class="builder-section-title">Данные аккаунта</h2>
+        <table class="table" style="box-shadow:none; border:none;">
+          <tr>
+            <th style="width: 35%;">Логин:</th>
+            <td>{{ user.username }}</td>
+          </tr>
+          <tr>
+            <th>ФИО:</th>
+            <td>{{ user.get_full_name|default:"Не указано" }}</td>
+          </tr>
+          <tr>
+            <th>Электронная почта:</th>
+            <td>{{ user.email }}</td>
+          </tr>
+          <tr>
+            <th>Телефон:</th>
+            <td>{{ user.phone|default:"Не указан" }}</td>
+          </tr>
+          <tr>
+            <th>Роль в системе:</th>
+            <td><span class="role-pill" style="font-size:13px;">{{ user.get_role_display }}</span></td>
+          </tr>
+          <tr>
+            <th>Дата регистрации:</th>
+            <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Мои последние заказы -->
+      <div class="builder-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <h2 class="builder-section-title" style="margin-bottom:0; border:none; padding:0;">Мои последние заказы</h2>
+          <a href="{% url 'order_list' %}" style="font-size:13px; color:var(--primary); font-weight:600;">Все заказы →</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>№</th>
+                <th>Дата выдачи</th>
+                <th>Статус</th>
+                <th>Сумма</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for o in orders %}
+                <tr>
+                  <td><strong>#{{ o.id }}</strong></td>
+                  <td>{{ o.delivery_date|date:"d.m.Y" }}</td>
+                  <td>{{ o.get_status_display }}</td>
+                  <td><strong>{{ o.total_price }} ₽</strong></td>
+                  <td><a href="{% url 'order_detail' o.id %}" class="btn btn-secondary btn-sm">Открыть</a></td>
+                </tr>
+              {% empty %}
+                <tr><td colspan="5" style="text-align:center; color:var(--text-muted);">У вас пока нет заказов.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Мои отзывы -->
+    <div>
+      <div class="live-summary-sticky" style="position:static;">
+        <h3 class="summary-header">Мои отзывы ({{ reviews.count }})</h3>
+        {% for r in reviews %}
+          <div style="background:var(--bg-body); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-color); margin-bottom:12px; font-size:13px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+              <strong>{{ r.base_cake.title }}</strong>
+              <span style="color:#FFA000;">{{ r.rating }}★</span>
+            </div>
+            <p style="color:var(--text-muted); margin-bottom:6px;">{{ r.text|truncatechars:80 }}</p>
+            <div style="display:flex; justify-content:space-between; font-size:11px;">
+              <span>{{ r.created_at|date:"d.m.Y" }}</span>
+              <span>
+                <a href="{% url 'review_edit' r.id %}" style="color:var(--info); margin-right:6px;">Изм.</a>
+                <a href="{% url 'review_delete' r.id %}" style="color:var(--danger);">Удалить</a>
+              </span>
+            </div>
+          </div>
+        {% empty %}
+          <p style="color:var(--text-muted); font-size:13px;">Вы пока не оставляли отзывов.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

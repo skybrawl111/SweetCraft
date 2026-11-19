@@ -1,0 +1,3534 @@
+[
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$IOdMcleQU78j8Eh6retrjK$vbXaLfnw1xjGqyGCSQTC2NMlnVNrKBEXTpnx414B5H4=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Александр",
+    "last_name": "Администраторов",
+    "email": "admin@sweetcraft.local",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:45.769Z",
+    "role": "admin",
+    "phone": "+7 (999) 111-22-33",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$dobw9x3ewYw3t45MlwbQQO$OBwF8XlRQ8ZD6vgCzMrf2B+hYe98XE1xVaGTpc5xhcU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "manager",
+    "first_name": "Елена",
+    "last_name": "Менеджерова",
+    "email": "manager@sweetcraft.local",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:46.764Z",
+    "role": "manager",
+    "phone": "+7 (999) 222-33-44",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Set22ToykFqq8AsIc02NJ3$R8zw0xuPk02pq3kUoLhXt5TEufhsGf6oBe6c+mzbjHE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "baker",
+    "first_name": "Михаил",
+    "last_name": "Шеф-Кондитер",
+    "email": "baker@sweetcraft.local",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:47.723Z",
+    "role": "confectioner",
+    "phone": "+7 (999) 333-44-55",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$OskuaFmVmmIef7O2VReyog$qUffEj7TxDSaKFPpwP1lL+Tc/k+r1XuvQnoo92APPws=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "anna",
+    "first_name": "Анна",
+    "last_name": "Смирнова",
+    "email": "anna@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:48.672Z",
+    "role": "customer",
+    "phone": "+7 (903) 123-45-67",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$iACzEhbzxmpOhFcy6KNTAe$k19zsIGMfWbnosHTRQIUbst7oeeOpdWmHg/RHz3rlgc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dmitry",
+    "first_name": "Дмитрий",
+    "last_name": "Иванов",
+    "email": "dmitry@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:49.508Z",
+    "role": "customer",
+    "phone": "+7 (916) 234-56-78",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$yvqq2cN3gFNXIbaP6osAMq$hXP9ewF3gC/mZ/ptGF42ktUz7yADqXsjfDQINh5Bcrw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "olga",
+    "first_name": "Ольга",
+    "last_name": "Кузнецова",
+    "email": "olga@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:50.420Z",
+    "role": "customer",
+    "phone": "+7 (925) 345-67-89",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$JNXnislrKlW2ChHP17VbjU$AbDWj/jQuPsqgMaaRPBGLnutiAIBqGUs7cdwpmQ62MI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sergey",
+    "first_name": "Сергей",
+    "last_name": "Попов",
+    "email": "sergey@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:51.252Z",
+    "role": "customer",
+    "phone": "+7 (977) 456-78-90",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Larcr0JZ7FYYUgoFoAuw4d$zAa0yZC9einrpcyLLetErmvHYP1LjdKJ2prVHVxmkO4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "marina",
+    "first_name": "Марина",
+    "last_name": "Васильева",
+    "email": "marina@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:52.051Z",
+    "role": "customer",
+    "phone": "+7 (985) 567-89-01",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$LpohxuFA6t0XXOPI8PZ4GL$9xzljS/IsudtpCKcPQFmSWPwpGXM9LdbAVZRwboxB0c=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "artem",
+    "first_name": "Артем",
+    "last_name": "Новиков",
+    "email": "artem@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:52.894Z",
+    "role": "customer",
+    "phone": "+7 (915) 678-90-12",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$AwcWNeilawGpt64yT31ELp$svtv18nn5Jy8Ch8yhUrQJgMPWMSAWPF4uzu779fPZxw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "svetlana",
+    "first_name": "Светлана",
+    "last_name": "Морозова",
+    "email": "sveta@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:53.699Z",
+    "role": "customer",
+    "phone": "+7 (926) 789-01-23",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$aldZ3bSVBJGb7Dyh0HjaMI$K5z7dEca7iNFV/AznXGE/2vP1CBPv0zqPlVWPM3ZlMI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "igor",
+    "first_name": "Игорь",
+    "last_name": "Федоров",
+    "email": "igor@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:54.503Z",
+    "role": "customer",
+    "phone": "+7 (909) 890-12-34",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$cpWWu74Rl5yuuZuBelTiOl$c8ipUXayrH1vaPYEMvpVPx9CHBIa1BGFrkLw0n0Fo5g=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "tatiana",
+    "first_name": "Татьяна",
+    "last_name": "Павлова",
+    "email": "tanya@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:55.318Z",
+    "role": "customer",
+    "phone": "+7 (968) 901-23-45",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$t5CxCUfUOSZGZi7ZePVgiI$0VQ/z9iHfu9hLuILBesCR0uD/AiMAkQNMg2CJpUst2Y=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "viktor",
+    "first_name": "Виктор",
+    "last_name": "Семенов",
+    "email": "viktor@mail.local",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-15T08:38:56.130Z",
+    "role": "customer",
+    "phone": "+7 (999) 012-34-56",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 1,
+  "fields": {
+    "name": "Классические торты",
+    "slug": "classic-cakes",
+    "description": "Традиционные проверенные временем торты для семейных торжеств",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 2,
+  "fields": {
+    "name": "Муссовые торты",
+    "slug": "mousse-cakes",
+    "description": "Европейские легкие десерты с зеркальной глазурью и велюром",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 3,
+  "fields": {
+    "name": "Бенто-торты",
+    "slug": "bento-cakes",
+    "description": "Мини-торты на 1-2 персоны в экологичных ланч-боксах",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 4,
+  "fields": {
+    "name": "Свадебные ярусные торты",
+    "slug": "wedding-cakes",
+    "description": "Многоярусные торжественные композиции со скрытым каркасом",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 5,
+  "fields": {
+    "name": "Детские праздничные торты",
+    "slug": "kids-cakes",
+    "description": "Яркие торты с безопасными красителями и сахарными фигурками",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 6,
+  "fields": {
+    "name": "Капкейки и маффины",
+    "slug": "cupcakes",
+    "description": "Порционные бисквитные пирожные с кремовыми шапочками",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 7,
+  "fields": {
+    "name": "Макаронс и пирожные",
+    "slug": "macarons",
+    "description": "Французские миндальные пирожные с ганашем",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 8,
+  "fields": {
+    "name": "Тарты и тарталетки",
+    "slug": "tarts",
+    "description": "Песочные корзинки со свежими ягодами и заварным кремом",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 9,
+  "fields": {
+    "name": "ПП и веган десерты",
+    "slug": "diet-vegan",
+    "description": "Низкокалорийные десерты без сахара, глютена и лактозы",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.category",
+  "pk": 10,
+  "fields": {
+    "name": "Чизкейки",
+    "slug": "cheesecakes",
+    "description": "Нежные чизкейки горячего и холодного приготовления на крем-чизе",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 1,
+  "fields": {
+    "name": "Классический шифоновый ванильный",
+    "extra_cost": "400.00",
+    "description": "Воздушный и нежный бисквит с натуральной мадагаскарской ванилью"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 2,
+  "fields": {
+    "name": "Насыщенный шоколадный брауни",
+    "extra_cost": "550.00",
+    "description": "Плотный, влажный шоколадный бисквит на основе бельгийского тёмного какао"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 3,
+  "fields": {
+    "name": "Красный бархат (Red Velvet)",
+    "extra_cost": "500.00",
+    "description": "Легендарный сочный бархатный бисквит с тонким шоколадным послевкусием"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 4,
+  "fields": {
+    "name": "Морковно-пряный с корицей",
+    "extra_cost": "450.00",
+    "description": "Ароматный бисквит с добавлением свежей моркови, корицы и мускатного ореха"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 5,
+  "fields": {
+    "name": "Фисташковый деликатный",
+    "extra_cost": "650.00",
+    "description": "Изысканный бисквит с добавлением 100% натуральной фисташковой пасты"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 6,
+  "fields": {
+    "name": "Медовые коржи традиционные",
+    "extra_cost": "400.00",
+    "description": "Тонкие золотистые коржи на алтайском липовом мёде со сливочной пропиткой"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 7,
+  "fields": {
+    "name": "Слоёные хрустящие коржи (Наполеон)",
+    "extra_cost": "450.00",
+    "description": "Многослойные тончайшие рубленые коржи на сливочном масле 82.5%"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 8,
+  "fields": {
+    "name": "Миндальный дакуаз (без глютена)",
+    "extra_cost": "700.00",
+    "description": "Хрустящий снаружи и мягкий внутри меренговый корж на миндальной муке"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 9,
+  "fields": {
+    "name": "Кокосовый нежный бисквит",
+    "extra_cost": "480.00",
+    "description": "Влажный бисквит на кокосовом молоке с добавлением белой стружки"
+  }
+},
+{
+  "model": "bakery.crusttype",
+  "pk": 10,
+  "fields": {
+    "name": "Лавандовый бисквит с черникой",
+    "extra_cost": "520.00",
+    "description": "Оригинальный бисквит с экстрактом горной лаванды и ягодами черники"
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 1,
+  "fields": {
+    "name": "Малина - мята (ягодное компоте)",
+    "description": "Свежее малиновое конфи с листочками перечной мяты",
+    "price_per_kg": "1200.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 2,
+  "fields": {
+    "name": "Сливочный маскарпоне с садовой клубникой",
+    "description": "Нежнейший крем на основе итальянского сыра маскарпоне",
+    "price_per_kg": "1350.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 3,
+  "fields": {
+    "name": "Солёная карамель с жареным арахисом",
+    "description": "Домашняя тягучая карамель с щепоткой морской соли",
+    "price_per_kg": "1100.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 4,
+  "fields": {
+    "name": "Манго - маракуйя (тропический мусс)",
+    "description": "Яркий экзотический вкус спелого тайского манго и кислинка маракуйи",
+    "price_per_kg": "1400.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 5,
+  "fields": {
+    "name": "Тёмный бельгийский шоколад с пьяной вишней",
+    "description": "Плотный шоколадный ганаш с вишней, вымоченной в ликёре",
+    "price_per_kg": "1300.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 6,
+  "fields": {
+    "name": "Черничный чизкейк",
+    "description": "Сливочно-сырный крем с прослойкой из протёртой черники",
+    "price_per_kg": "1250.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 7,
+  "fields": {
+    "name": "Фисташковый ганаш с малиной",
+    "description": "Премиальный крем с фисташковой пастой и цельными ягодами малины",
+    "price_per_kg": "1600.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 8,
+  "fields": {
+    "name": "Лимонный курд с нежной меренгой",
+    "description": "Освежающий цитрусовый заварной крем с ярким лимонным соком",
+    "price_per_kg": "1150.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 9,
+  "fields": {
+    "name": "Крем-чиз на белом шоколаде",
+    "description": "Классический устойчивый крем с натуральными сливками и белым шоколадом",
+    "price_per_kg": "1200.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.filling",
+  "pk": 10,
+  "fields": {
+    "name": "Карамелизованная груша с сыром Дорблю",
+    "description": "Гастрономическое сочетание пряной томлёной груши и благородного сыра",
+    "price_per_kg": "1500.00",
+    "is_active": true
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 1,
+  "fields": {
+    "name": "Венок из свежих ягод (клубника, голубика, малина)",
+    "cost": "800.00",
+    "description": "Горка свежих отборных ягод с веточками розмарина"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 2,
+  "fields": {
+    "name": "Шоколадный велюр (напыление какао-масла)",
+    "cost": "700.00",
+    "description": "Бархатистое матовое покрытие любого цвета на выбор"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 3,
+  "fields": {
+    "name": "Сахарная фотопечать съедобными чернилами",
+    "cost": "500.00",
+    "description": "Печать любого изображения, фотографии или логотипа на вафельной бумаге"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 4,
+  "fields": {
+    "name": "Фигурки из мастики ручной лепки (до 3 шт.)",
+    "cost": "1200.00",
+    "description": "Индивидуальные персонажи и композиции ручной работы мастера"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 5,
+  "fields": {
+    "name": "Шоколадные сферы и трюфели ручной работы",
+    "cost": "650.00",
+    "description": "Шары из бельгийского шоколада с золотым напылением"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 6,
+  "fields": {
+    "name": "Леденцы из изомальта и безе на палочках",
+    "cost": "450.00",
+    "description": "Прозрачные кристаллы и воздушные меренги для детского торта"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 7,
+  "fields": {
+    "name": "Макаронс французские ассорти (5 шт.)",
+    "cost": "600.00",
+    "description": "Миндальные пирожные с нежными начинками на выбор"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 8,
+  "fields": {
+    "name": "Съедобное сусальное золото и кандурин",
+    "cost": "550.00",
+    "description": "Изящные золотые брызги и сияние для юбилейного торта"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 9,
+  "fields": {
+    "name": "Зеркальная глянцевая глазурь",
+    "cost": "500.00",
+    "description": "Идеально ровный зеркальный блеск поверхности торта"
+  }
+},
+{
+  "model": "bakery.decoration",
+  "pk": 10,
+  "fields": {
+    "name": "Живые обработанные съедобные цветы",
+    "cost": "750.00",
+    "description": "Бутоны роз, эустом и кустовых хризантем со специальной изоляцией стеблей"
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "title": "Красный бархат классический",
+    "slug": "krasnyj-barhat",
+    "description": "Знаменитый торт с сочными красными коржами и сливочным крем-чизом.",
+    "base_price": "2800.00",
+    "default_weight": "2.00",
+    "crust_type": 3,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.145Z",
+    "available_fillings": [
+      1,
+      4,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "title": "Шоколадный трюфель Премиум",
+    "slug": "shokoladnyj-tryufel",
+    "description": "Глубокий шоколадный вкус для истинных ценителей бельгийского шоколада.",
+    "base_price": "3200.00",
+    "default_weight": "2.00",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.161Z",
+    "available_fillings": [
+      9,
+      1,
+      4,
+      7
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "title": "Морковный с пряной карамелью",
+    "slug": "morkovnyj-karamel",
+    "description": "Домашний уютный вкус с нотками корицы, грецкого ореха и карамели.",
+    "base_price": "2500.00",
+    "default_weight": "2.00",
+    "crust_type": 4,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.176Z",
+    "available_fillings": [
+      3,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "title": "Медовик Деревенский",
+    "slug": "medovik-derevenskij",
+    "description": "Традиционный многослойный медовик с нежным заварным кремом.",
+    "base_price": "2400.00",
+    "default_weight": "2.20",
+    "crust_type": 6,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.190Z",
+    "available_fillings": [
+      10,
+      9
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "title": "Наполеон Хрустящий",
+    "slug": "napoleon-hrustyashchij",
+    "description": "Тысяча тончайших слоёв рублёного теста и классический пломбирный крем.",
+    "base_price": "2600.00",
+    "default_weight": "2.20",
+    "crust_type": 7,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.206Z",
+    "available_fillings": [
+      10,
+      2,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "title": "Фисташка - Малина Мусс",
+    "slug": "fistashka-malina-mousse",
+    "description": "Элитный десерт с натуральной фисташкой и яркой малиновой кислинкой.",
+    "base_price": "3600.00",
+    "default_weight": "1.80",
+    "crust_type": 5,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.221Z",
+    "available_fillings": [
+      8,
+      4,
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "title": "Тропический Манго-Маракуйя",
+    "slug": "tropicheskij-mango",
+    "description": "Лёгкий летний торт с освежающим фруктовым муссом и ванильным бисквитом.",
+    "base_price": "3100.00",
+    "default_weight": "1.80",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.236Z",
+    "available_fillings": [
+      8,
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 8,
+  "fields": {
+    "category": 2,
+    "title": "Три шоколада Премиум",
+    "slug": "tri-shokolada",
+    "description": "Градация нежных муссов из белого, молочного и темного шоколада.",
+    "base_price": "3400.00",
+    "default_weight": "1.90",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.251Z",
+    "available_fillings": [
+      10,
+      8,
+      1
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 9,
+  "fields": {
+    "category": 2,
+    "title": "Лавандовый Сон Мусс",
+    "slug": "lavandovyj-son",
+    "description": "Изысканный десерт с ароматом прованской лаванды и черничным кули.",
+    "base_price": "3300.00",
+    "default_weight": "1.80",
+    "crust_type": 10,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.265Z",
+    "available_fillings": [
+      10,
+      1,
+      4,
+      2
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 10,
+  "fields": {
+    "category": 3,
+    "title": "Бенто Шоколадный экспресс",
+    "slug": "bento-shokoladnyj",
+    "description": "Мини-торт на 400 грамм с надписью и свечкой в наборе.",
+    "base_price": "1200.00",
+    "default_weight": "0.50",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.279Z",
+    "available_fillings": [
+      4,
+      2,
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 11,
+  "fields": {
+    "category": 3,
+    "title": "Бенто Ягодный пломбир",
+    "slug": "bento-yagodnyj",
+    "description": "Воздушный ванильный бисквит с клубничным кули и крем-чизом.",
+    "base_price": "1200.00",
+    "default_weight": "0.50",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.293Z",
+    "available_fillings": [
+      1,
+      4,
+      2
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 12,
+  "fields": {
+    "category": 3,
+    "title": "Бенто Карамельный арахис",
+    "slug": "bento-karamel-arahis",
+    "description": "Сникерс-стиль с домашней соленой карамелью и арахисом.",
+    "base_price": "1250.00",
+    "default_weight": "0.50",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.308Z",
+    "available_fillings": [
+      9,
+      3,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 13,
+  "fields": {
+    "category": 3,
+    "title": "Бенто Красный бархат Мини",
+    "slug": "bento-red-velvet",
+    "description": "Порционный красный бархат с сердечком и пожеланием.",
+    "base_price": "1250.00",
+    "default_weight": "0.50",
+    "crust_type": 3,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.323Z",
+    "available_fillings": [
+      10,
+      9,
+      8,
+      4
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 14,
+  "fields": {
+    "category": 4,
+    "title": "Свадебная Симфония (3 яруса)",
+    "slug": "svadebnaya-simfoniya-3tier",
+    "description": "Грандиозный трехъярусный торт со скрытым каркасом и белым велюром.",
+    "base_price": "12500.00",
+    "default_weight": "6.50",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.340Z",
+    "available_fillings": [
+      10,
+      9,
+      5
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 15,
+  "fields": {
+    "category": 4,
+    "title": "Элегия Любви (2 яруса)",
+    "slug": "elegiya-lyubvi-2tier",
+    "description": "Двухъярусный торт в пастельных тонах с живыми цветами.",
+    "base_price": "8500.00",
+    "default_weight": "4.20",
+    "crust_type": 3,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.354Z",
+    "available_fillings": [
+      9,
+      8,
+      1,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 16,
+  "fields": {
+    "category": 4,
+    "title": "Золотой Век Свадебный",
+    "slug": "zolotoj-vek-wedding",
+    "description": "Роскошное оформление сусальным золотом и жемчужным кандурином.",
+    "base_price": "14000.00",
+    "default_weight": "7.00",
+    "crust_type": 5,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.368Z",
+    "available_fillings": [
+      10,
+      9,
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 17,
+  "fields": {
+    "category": 5,
+    "title": "Космическое Путешествие",
+    "slug": "kosmicheskoe-puteshestvie",
+    "description": "Торт с леденцами из изомальта и сахарной ракетой.",
+    "base_price": "3700.00",
+    "default_weight": "2.50",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.384Z",
+    "available_fillings": [
+      8,
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 18,
+  "fields": {
+    "category": 5,
+    "title": "Сказочный Единорог",
+    "slug": "skazochnyj-edinorog",
+    "description": "Нежный розово-голубой торт с рогом из бельгийского шоколада.",
+    "base_price": "3900.00",
+    "default_weight": "2.50",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.400Z",
+    "available_fillings": [
+      8,
+      1
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 19,
+  "fields": {
+    "category": 5,
+    "title": "Сафари в Джунглях",
+    "slug": "safari-dzhungli",
+    "description": "Фигурки милых зверят ручной лепки из сахарной мастики.",
+    "base_price": "4200.00",
+    "default_weight": "2.80",
+    "crust_type": 4,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.415Z",
+    "available_fillings": [
+      10,
+      9,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 20,
+  "fields": {
+    "category": 6,
+    "title": "Набор капкейков Ягодный микс (6 шт)",
+    "slug": "cupcakes-berry-mix-6",
+    "description": "Ассорти ванильных и шоколадных капкейков со свежими ягодами.",
+    "base_price": "1500.00",
+    "default_weight": "0.60",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.431Z",
+    "available_fillings": [
+      4,
+      5,
+      7,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 21,
+  "fields": {
+    "category": 6,
+    "title": "Набор капкейков Шоколадный вулкан (12 шт)",
+    "slug": "cupcakes-choc-vulcan-12",
+    "description": "Шоколадные кексы с жидким центром и шапочкой ганаша.",
+    "base_price": "2800.00",
+    "default_weight": "1.20",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.445Z",
+    "available_fillings": [
+      10,
+      2,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 22,
+  "fields": {
+    "category": 6,
+    "title": "Набор капкейков Красный бархат (6 шт)",
+    "slug": "cupcakes-red-velvet-6",
+    "description": "Сочные кексы с малиновой начинкой и крем-чизом.",
+    "base_price": "1600.00",
+    "default_weight": "0.60",
+    "crust_type": 3,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.461Z",
+    "available_fillings": [
+      9,
+      4,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 23,
+  "fields": {
+    "category": 7,
+    "title": "Коробка макаронс Гранд Ассорти (16 шт)",
+    "slug": "macarons-grand-16",
+    "description": "16 французских пирожных с 8 разными вкусами.",
+    "base_price": "2400.00",
+    "default_weight": "0.40",
+    "crust_type": 8,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.474Z",
+    "available_fillings": [
+      8,
+      2,
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 24,
+  "fields": {
+    "category": 7,
+    "title": "Набор макаронс Фисташка-Малина (8 шт)",
+    "slug": "macarons-pistachio-8",
+    "description": "Нежные миндальные половинки с фисташковым ганашем.",
+    "base_price": "1300.00",
+    "default_weight": "0.20",
+    "crust_type": 8,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.490Z",
+    "available_fillings": [
+      8,
+      4
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 25,
+  "fields": {
+    "category": 8,
+    "title": "Тарт с лесной земляникой и кремом дипломат",
+    "slug": "tart-strawberry-diplomat",
+    "description": "Хрустящее песочное сабле со свежими ягодами.",
+    "base_price": "2200.00",
+    "default_weight": "1.20",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.504Z",
+    "available_fillings": [
+      9,
+      4,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 26,
+  "fields": {
+    "category": 8,
+    "title": "Лимонный Тарто-торт с меренгой",
+    "slug": "limonnyj-tart",
+    "description": "Яркий десерт с лимонным курдом и обожжённой меренгой.",
+    "base_price": "2700.00",
+    "default_weight": "1.80",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.520Z",
+    "available_fillings": [
+      9,
+      8,
+      1,
+      6
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 27,
+  "fields": {
+    "category": 9,
+    "title": "Миндальный Дакуаз с ягодами (Без глютена)",
+    "slug": "mindalnyj-dakuaz",
+    "description": "Безглютеновый воздушный торт на миндальной муке с клубникой.",
+    "base_price": "3800.00",
+    "default_weight": "1.80",
+    "crust_type": 8,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.536Z",
+    "available_fillings": [
+      8,
+      4
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 28,
+  "fields": {
+    "category": 9,
+    "title": "Авокадо-Лайм Raw Cake (Веган)",
+    "slug": "avocado-lime-raw",
+    "description": "Сыроедческий торт на основе кешью-крема, авокадо и кокосового масла.",
+    "base_price": "3900.00",
+    "default_weight": "1.60",
+    "crust_type": 9,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.550Z",
+    "available_fillings": [
+      8,
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 29,
+  "fields": {
+    "category": 9,
+    "title": "Кокосовый Рай без сахара",
+    "slug": "kokosovyj-raj-sugarfree",
+    "description": "Десерт на стевии и кокосовых сливках с чиа-джемом.",
+    "base_price": "3500.00",
+    "default_weight": "1.70",
+    "crust_type": 9,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.565Z",
+    "available_fillings": [
+      8,
+      4,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 30,
+  "fields": {
+    "category": 10,
+    "title": "Чизкейк Нью-Йорк Классический",
+    "slug": "cheesecake-new-york",
+    "description": "Плотный запеченный чизкейк из сыра филадельфия на песочной основе.",
+    "base_price": "2600.00",
+    "default_weight": "1.80",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.580Z",
+    "available_fillings": [
+      4,
+      2,
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 31,
+  "fields": {
+    "category": 10,
+    "title": "Черничный Чизкейк Торт",
+    "slug": "chernichnyj-chizkejk",
+    "description": "Сочетание запечённого чизкейка и ароматной лесной черники.",
+    "base_price": "2900.00",
+    "default_weight": "2.00",
+    "crust_type": 1,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.595Z",
+    "available_fillings": [
+      10,
+      8
+    ]
+  }
+},
+{
+  "model": "bakery.basecake",
+  "pk": 32,
+  "fields": {
+    "category": 10,
+    "title": "Карамельный чизкейк с пеканом",
+    "slug": "cheesecake-caramel-pecan",
+    "description": "Сливочно-сырный торт с карамельной глазурью и орехами пекан.",
+    "base_price": "3100.00",
+    "default_weight": "1.90",
+    "crust_type": 2,
+    "image": "",
+    "is_available": true,
+    "created_at": "2026-11-15T08:38:57.610Z",
+    "available_fillings": [
+      4,
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 1,
+  "fields": {
+    "shift_date": "2026-11-12",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 2,
+  "fields": {
+    "shift_date": "2026-11-13",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 3,
+  "fields": {
+    "shift_date": "2026-11-14",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "45.00",
+    "notes": "Усиленная выходная смена"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 4,
+  "fields": {
+    "shift_date": "2026-11-15",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "45.00",
+    "notes": "Усиленная выходная смена"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 5,
+  "fields": {
+    "shift_date": "2026-11-16",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 6,
+  "fields": {
+    "shift_date": "2026-11-17",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 7,
+  "fields": {
+    "shift_date": "2026-11-18",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 8,
+  "fields": {
+    "shift_date": "2026-11-19",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 9,
+  "fields": {
+    "shift_date": "2026-11-20",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 10,
+  "fields": {
+    "shift_date": "2026-11-21",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "45.00",
+    "notes": "Усиленная выходная смена"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 11,
+  "fields": {
+    "shift_date": "2026-11-22",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "45.00",
+    "notes": "Усиленная выходная смена"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 12,
+  "fields": {
+    "shift_date": "2026-11-23",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 13,
+  "fields": {
+    "shift_date": "2026-11-24",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 14,
+  "fields": {
+    "shift_date": "2026-11-25",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 15,
+  "fields": {
+    "shift_date": "2026-11-26",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 16,
+  "fields": {
+    "shift_date": "2026-11-27",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "35.00",
+    "notes": "Стандартная рабочая смена цеха"
+  }
+},
+{
+  "model": "bakery.confectionershift",
+  "pk": 17,
+  "fields": {
+    "shift_date": "2026-11-28",
+    "confectioner": [
+      "baker"
+    ],
+    "max_capacity_weight": "45.00",
+    "notes": "Усиленная выходная смена"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 1,
+  "fields": {
+    "customer": [
+      "anna"
+    ],
+    "delivery_date": "2026-11-16",
+    "status": "READY",
+    "total_price": "5850.00",
+    "contact_phone": "+7 (903) 123-45-67",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 1, кв. 86",
+    "comment": "Заказ #1 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:57.792Z",
+    "updated_at": "2026-11-15T08:38:57.792Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 2,
+  "fields": {
+    "customer": [
+      "dmitry"
+    ],
+    "delivery_date": "2026-11-28",
+    "status": "IN_PROGRESS",
+    "total_price": "9200.00",
+    "contact_phone": "+7 (916) 234-56-78",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 2, кв. 28",
+    "comment": "Заказ #2 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:57.826Z",
+    "updated_at": "2026-11-15T08:38:57.826Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 3,
+  "fields": {
+    "customer": [
+      "olga"
+    ],
+    "delivery_date": "2026-11-22",
+    "status": "COMPLETED",
+    "total_price": "6800.00",
+    "contact_phone": "+7 (925) 345-67-89",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 3, кв. 73",
+    "comment": "Заказ #3 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:57.872Z",
+    "updated_at": "2026-11-15T08:38:57.872Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 4,
+  "fields": {
+    "customer": [
+      "sergey"
+    ],
+    "delivery_date": "2026-11-14",
+    "status": "COMPLETED",
+    "total_price": "8150.00",
+    "contact_phone": "+7 (977) 456-78-90",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 4, кв. 79",
+    "comment": "Заказ #4 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:57.914Z",
+    "updated_at": "2026-11-15T08:38:57.914Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 5,
+  "fields": {
+    "customer": [
+      "marina"
+    ],
+    "delivery_date": "2026-11-14",
+    "status": "COMPLETED",
+    "total_price": "4430.00",
+    "contact_phone": "+7 (985) 567-89-01",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 5, кв. 64",
+    "comment": "Заказ #5 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:57.955Z",
+    "updated_at": "2026-11-15T08:38:57.955Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 6,
+  "fields": {
+    "customer": [
+      "artem"
+    ],
+    "delivery_date": "2026-11-20",
+    "status": "COMPLETED",
+    "total_price": "3400.00",
+    "contact_phone": "+7 (915) 678-90-12",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 6, кв. 29",
+    "comment": "Заказ #6 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:57.994Z",
+    "updated_at": "2026-11-15T08:38:57.994Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 7,
+  "fields": {
+    "customer": [
+      "svetlana"
+    ],
+    "delivery_date": "2026-11-25",
+    "status": "NEW",
+    "total_price": "7000.00",
+    "contact_phone": "+7 (926) 789-01-23",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 7, кв. 54",
+    "comment": "Заказ #7 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.027Z",
+    "updated_at": "2026-11-15T08:38:58.027Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 8,
+  "fields": {
+    "customer": [
+      "igor"
+    ],
+    "delivery_date": "2026-11-15",
+    "status": "COMPLETED",
+    "total_price": "5800.00",
+    "contact_phone": "+7 (909) 890-12-34",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 8, кв. 37",
+    "comment": "Заказ #8 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.074Z",
+    "updated_at": "2026-11-15T08:38:58.074Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 9,
+  "fields": {
+    "customer": [
+      "tatiana"
+    ],
+    "delivery_date": "2026-11-16",
+    "status": "READY",
+    "total_price": "3750.00",
+    "contact_phone": "+7 (968) 901-23-45",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 9, кв. 101",
+    "comment": "Заказ #9 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.109Z",
+    "updated_at": "2026-11-15T08:38:58.109Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 10,
+  "fields": {
+    "customer": [
+      "viktor"
+    ],
+    "delivery_date": "2026-11-14",
+    "status": "COMPLETED",
+    "total_price": "6550.00",
+    "contact_phone": "+7 (999) 012-34-56",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 10, кв. 93",
+    "comment": "Заказ #10 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.144Z",
+    "updated_at": "2026-11-15T08:38:58.144Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 11,
+  "fields": {
+    "customer": [
+      "anna"
+    ],
+    "delivery_date": "2026-11-13",
+    "status": "COMPLETED",
+    "total_price": "5675.00",
+    "contact_phone": "+7 (903) 123-45-67",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 11, кв. 59",
+    "comment": "Заказ #11 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.178Z",
+    "updated_at": "2026-11-15T08:38:58.178Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 12,
+  "fields": {
+    "customer": [
+      "dmitry"
+    ],
+    "delivery_date": "2026-11-23",
+    "status": "ACCEPTED",
+    "total_price": "6300.00",
+    "contact_phone": "+7 (916) 234-56-78",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 12, кв. 40",
+    "comment": "Заказ #12 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.228Z",
+    "updated_at": "2026-11-15T08:38:58.228Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 13,
+  "fields": {
+    "customer": [
+      "olga"
+    ],
+    "delivery_date": "2026-11-18",
+    "status": "COMPLETED",
+    "total_price": "7150.00",
+    "contact_phone": "+7 (925) 345-67-89",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 13, кв. 108",
+    "comment": "Заказ #13 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.276Z",
+    "updated_at": "2026-11-15T08:38:58.276Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 14,
+  "fields": {
+    "customer": [
+      "sergey"
+    ],
+    "delivery_date": "2026-11-21",
+    "status": "IN_PROGRESS",
+    "total_price": "5100.00",
+    "contact_phone": "+7 (977) 456-78-90",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 14, кв. 112",
+    "comment": "Заказ #14 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.319Z",
+    "updated_at": "2026-11-15T08:38:58.319Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 15,
+  "fields": {
+    "customer": [
+      "marina"
+    ],
+    "delivery_date": "2026-11-28",
+    "status": "COMPLETED",
+    "total_price": "5900.00",
+    "contact_phone": "+7 (985) 567-89-01",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 15, кв. 103",
+    "comment": "Заказ #15 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.363Z",
+    "updated_at": "2026-11-15T08:38:58.363Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 16,
+  "fields": {
+    "customer": [
+      "artem"
+    ],
+    "delivery_date": "2026-11-12",
+    "status": "COMPLETED",
+    "total_price": "5950.00",
+    "contact_phone": "+7 (915) 678-90-12",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 16, кв. 74",
+    "comment": "Заказ #16 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.396Z",
+    "updated_at": "2026-11-15T08:38:58.396Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 17,
+  "fields": {
+    "customer": [
+      "svetlana"
+    ],
+    "delivery_date": "2026-11-16",
+    "status": "READY",
+    "total_price": "5950.00",
+    "contact_phone": "+7 (926) 789-01-23",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 17, кв. 91",
+    "comment": "Заказ #17 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.441Z",
+    "updated_at": "2026-11-15T08:38:58.441Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 18,
+  "fields": {
+    "customer": [
+      "igor"
+    ],
+    "delivery_date": "2026-11-13",
+    "status": "COMPLETED",
+    "total_price": "5575.00",
+    "contact_phone": "+7 (909) 890-12-34",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 18, кв. 53",
+    "comment": "Заказ #18 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.479Z",
+    "updated_at": "2026-11-15T08:38:58.479Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 19,
+  "fields": {
+    "customer": [
+      "tatiana"
+    ],
+    "delivery_date": "2026-11-23",
+    "status": "NEW",
+    "total_price": "3950.00",
+    "contact_phone": "+7 (968) 901-23-45",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 19, кв. 106",
+    "comment": "Заказ #19 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.525Z",
+    "updated_at": "2026-11-15T08:38:58.525Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 20,
+  "fields": {
+    "customer": [
+      "viktor"
+    ],
+    "delivery_date": "2026-11-24",
+    "status": "ACCEPTED",
+    "total_price": "4125.00",
+    "contact_phone": "+7 (999) 012-34-56",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 20, кв. 99",
+    "comment": "Заказ #20 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.566Z",
+    "updated_at": "2026-11-15T08:38:58.566Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 21,
+  "fields": {
+    "customer": [
+      "anna"
+    ],
+    "delivery_date": "2026-11-12",
+    "status": "COMPLETED",
+    "total_price": "4600.00",
+    "contact_phone": "+7 (903) 123-45-67",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 21, кв. 76",
+    "comment": "Заказ #21 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.602Z",
+    "updated_at": "2026-11-15T08:38:58.602Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 22,
+  "fields": {
+    "customer": [
+      "dmitry"
+    ],
+    "delivery_date": "2026-11-27",
+    "status": "COMPLETED",
+    "total_price": "4225.00",
+    "contact_phone": "+7 (916) 234-56-78",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 22, кв. 29",
+    "comment": "Заказ #22 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.649Z",
+    "updated_at": "2026-11-15T08:38:58.649Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 23,
+  "fields": {
+    "customer": [
+      "olga"
+    ],
+    "delivery_date": "2026-11-25",
+    "status": "READY",
+    "total_price": "8800.00",
+    "contact_phone": "+7 (925) 345-67-89",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 23, кв. 54",
+    "comment": "Заказ #23 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.691Z",
+    "updated_at": "2026-11-15T08:38:58.693Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 24,
+  "fields": {
+    "customer": [
+      "sergey"
+    ],
+    "delivery_date": "2026-11-12",
+    "status": "COMPLETED",
+    "total_price": "5850.00",
+    "contact_phone": "+7 (977) 456-78-90",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 24, кв. 41",
+    "comment": "Заказ #24 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.736Z",
+    "updated_at": "2026-11-15T08:38:58.736Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 25,
+  "fields": {
+    "customer": [
+      "marina"
+    ],
+    "delivery_date": "2026-11-24",
+    "status": "READY",
+    "total_price": "5145.00",
+    "contact_phone": "+7 (985) 567-89-01",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 25, кв. 72",
+    "comment": "Заказ #25 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.768Z",
+    "updated_at": "2026-11-15T08:38:58.768Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 26,
+  "fields": {
+    "customer": [
+      "artem"
+    ],
+    "delivery_date": "2026-11-16",
+    "status": "READY",
+    "total_price": "8550.00",
+    "contact_phone": "+7 (915) 678-90-12",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 26, кв. 36",
+    "comment": "Заказ #26 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.805Z",
+    "updated_at": "2026-11-15T08:38:58.805Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 27,
+  "fields": {
+    "customer": [
+      "svetlana"
+    ],
+    "delivery_date": "2026-11-24",
+    "status": "COMPLETED",
+    "total_price": "6025.00",
+    "contact_phone": "+7 (926) 789-01-23",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 27, кв. 17",
+    "comment": "Заказ #27 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.839Z",
+    "updated_at": "2026-11-15T08:38:58.839Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 28,
+  "fields": {
+    "customer": [
+      "igor"
+    ],
+    "delivery_date": "2026-11-18",
+    "status": "ACCEPTED",
+    "total_price": "9650.00",
+    "contact_phone": "+7 (909) 890-12-34",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 28, кв. 8",
+    "comment": "Заказ #28 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.875Z",
+    "updated_at": "2026-11-15T08:38:58.875Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 29,
+  "fields": {
+    "customer": [
+      "tatiana"
+    ],
+    "delivery_date": "2026-11-19",
+    "status": "COMPLETED",
+    "total_price": "7400.00",
+    "contact_phone": "+7 (968) 901-23-45",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 29, кв. 56",
+    "comment": "Заказ #29 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.919Z",
+    "updated_at": "2026-11-15T08:38:58.919Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 30,
+  "fields": {
+    "customer": [
+      "viktor"
+    ],
+    "delivery_date": "2026-11-12",
+    "status": "COMPLETED",
+    "total_price": "8400.00",
+    "contact_phone": "+7 (999) 012-34-56",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 30, кв. 25",
+    "comment": "Заказ #30 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:58.960Z",
+    "updated_at": "2026-11-15T08:38:58.960Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 31,
+  "fields": {
+    "customer": [
+      "anna"
+    ],
+    "delivery_date": "2026-11-24",
+    "status": "READY",
+    "total_price": "4300.00",
+    "contact_phone": "+7 (903) 123-45-67",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 31, кв. 25",
+    "comment": "Заказ #31 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:59.003Z",
+    "updated_at": "2026-11-15T08:38:59.004Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 32,
+  "fields": {
+    "customer": [
+      "dmitry"
+    ],
+    "delivery_date": "2026-11-20",
+    "status": "IN_PROGRESS",
+    "total_price": "7450.00",
+    "contact_phone": "+7 (916) 234-56-78",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 32, кв. 70",
+    "comment": "Заказ #32 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:59.033Z",
+    "updated_at": "2026-11-15T08:38:59.033Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 33,
+  "fields": {
+    "customer": [
+      "olga"
+    ],
+    "delivery_date": "2026-11-26",
+    "status": "COMPLETED",
+    "total_price": "4300.00",
+    "contact_phone": "+7 (925) 345-67-89",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 33, кв. 22",
+    "comment": "Заказ #33 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:59.076Z",
+    "updated_at": "2026-11-15T08:38:59.076Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 34,
+  "fields": {
+    "customer": [
+      "sergey"
+    ],
+    "delivery_date": "2026-11-12",
+    "status": "COMPLETED",
+    "total_price": "7675.00",
+    "contact_phone": "+7 (977) 456-78-90",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 34, кв. 58",
+    "comment": "Заказ #34 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:59.122Z",
+    "updated_at": "2026-11-15T08:38:59.122Z"
+  }
+},
+{
+  "model": "bakery.order",
+  "pk": 35,
+  "fields": {
+    "customer": [
+      "marina"
+    ],
+    "delivery_date": "2026-11-23",
+    "status": "ACCEPTED",
+    "total_price": "4900.00",
+    "contact_phone": "+7 (985) 567-89-01",
+    "delivery_address": "г. Москва, ул. Кондитерская, д. 35, кв. 1",
+    "comment": "Заказ #35 к праздничному событию. Доставить аккуратно.",
+    "created_at": "2026-11-15T08:38:59.178Z",
+    "updated_at": "2026-11-15T08:38:59.178Z"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "base_cake": 7,
+    "crust_type": 1,
+    "filling": 6,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "5850.00",
+    "text_on_cake": "С праздником! #1"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "base_cake": 24,
+    "crust_type": 8,
+    "filling": 7,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "9200.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "base_cake": 19,
+    "crust_type": 4,
+    "filling": 2,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "6800.00",
+    "text_on_cake": "С праздником! #3"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "base_cake": 2,
+    "crust_type": 2,
+    "filling": 7,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "8150.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 5,
+    "base_cake": 28,
+    "crust_type": 9,
+    "filling": 5,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "4430.00",
+    "text_on_cake": "С праздником! #5"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 6,
+    "base_cake": 26,
+    "crust_type": 1,
+    "filling": 10,
+    "tiers": 1,
+    "weight": "1.50",
+    "item_price": "3400.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 7,
+    "base_cake": 21,
+    "crust_type": 2,
+    "filling": 8,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "7000.00",
+    "text_on_cake": "С праздником! #7"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 8,
+    "base_cake": 21,
+    "crust_type": 2,
+    "filling": 5,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "5800.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 9,
+    "base_cake": 20,
+    "crust_type": 1,
+    "filling": 2,
+    "tiers": 1,
+    "weight": "2.00",
+    "item_price": "3750.00",
+    "text_on_cake": "С праздником! #9"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 10,
+    "base_cake": 7,
+    "crust_type": 1,
+    "filling": 4,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "6550.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 11,
+    "base_cake": 21,
+    "crust_type": 2,
+    "filling": 2,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "5675.00",
+    "text_on_cake": "С праздником! #11"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 12,
+    "base_cake": 14,
+    "crust_type": 1,
+    "filling": 1,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "6300.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 13,
+    "base_cake": 18,
+    "crust_type": 1,
+    "filling": 4,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "7150.00",
+    "text_on_cake": "С праздником! #13"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 14,
+    "base_cake": 20,
+    "crust_type": 1,
+    "filling": 10,
+    "tiers": 1,
+    "weight": "1.50",
+    "item_price": "5100.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 15,
+    "base_cake": 13,
+    "crust_type": 3,
+    "filling": 4,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "5900.00",
+    "text_on_cake": "С праздником! #15"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 16,
+    "base_cake": 32,
+    "crust_type": 2,
+    "filling": 5,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "5950.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 17,
+    "base_cake": 25,
+    "crust_type": 1,
+    "filling": 4,
+    "tiers": 2,
+    "weight": "3.00",
+    "item_price": "5950.00",
+    "text_on_cake": "С праздником! #17"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 18,
+    "base_cake": 14,
+    "crust_type": 1,
+    "filling": 2,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "5575.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 19,
+    "base_cake": 32,
+    "crust_type": 2,
+    "filling": 9,
+    "tiers": 1,
+    "weight": "2.00",
+    "item_price": "3950.00",
+    "text_on_cake": "С праздником! #19"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 20,
+    "base_cake": 22,
+    "crust_type": 3,
+    "filling": 6,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "4125.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 21,
+    "base_cake": 32,
+    "crust_type": 2,
+    "filling": 8,
+    "tiers": 1,
+    "weight": "2.00",
+    "item_price": "4600.00",
+    "text_on_cake": "С праздником! #21"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 22,
+    "base_cake": 18,
+    "crust_type": 1,
+    "filling": 2,
+    "tiers": 1,
+    "weight": "1.50",
+    "item_price": "4225.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 23,
+    "base_cake": 15,
+    "crust_type": 3,
+    "filling": 10,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "8800.00",
+    "text_on_cake": "С праздником! #23"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 24,
+    "base_cake": 13,
+    "crust_type": 3,
+    "filling": 4,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "5850.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 25,
+    "base_cake": 9,
+    "crust_type": 10,
+    "filling": 2,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "5145.00",
+    "text_on_cake": "С праздником! #25"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 26,
+    "base_cake": 32,
+    "crust_type": 2,
+    "filling": 2,
+    "tiers": 3,
+    "weight": "5.00",
+    "item_price": "8550.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 27,
+  "fields": {
+    "order": 27,
+    "base_cake": 27,
+    "crust_type": 8,
+    "filling": 6,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "6025.00",
+    "text_on_cake": "С праздником! #27"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 28,
+  "fields": {
+    "order": 28,
+    "base_cake": 31,
+    "crust_type": 1,
+    "filling": 10,
+    "tiers": 3,
+    "weight": "5.00",
+    "item_price": "9650.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 29,
+  "fields": {
+    "order": 29,
+    "base_cake": 5,
+    "crust_type": 7,
+    "filling": 10,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "7400.00",
+    "text_on_cake": "С праздником! #29"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 30,
+  "fields": {
+    "order": 30,
+    "base_cake": 18,
+    "crust_type": 1,
+    "filling": 10,
+    "tiers": 2,
+    "weight": "4.00",
+    "item_price": "8400.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 31,
+  "fields": {
+    "order": 31,
+    "base_cake": 15,
+    "crust_type": 3,
+    "filling": 9,
+    "tiers": 1,
+    "weight": "2.50",
+    "item_price": "4300.00",
+    "text_on_cake": "С праздником! #31"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 32,
+  "fields": {
+    "order": 32,
+    "base_cake": 15,
+    "crust_type": 3,
+    "filling": 10,
+    "tiers": 2,
+    "weight": "3.00",
+    "item_price": "7450.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 33,
+  "fields": {
+    "order": 33,
+    "base_cake": 7,
+    "crust_type": 1,
+    "filling": 4,
+    "tiers": 1,
+    "weight": "1.50",
+    "item_price": "4300.00",
+    "text_on_cake": "С праздником! #33"
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 34,
+  "fields": {
+    "order": 34,
+    "base_cake": 3,
+    "crust_type": 4,
+    "filling": 2,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "7675.00",
+    "text_on_cake": ""
+  }
+},
+{
+  "model": "bakery.orderitem",
+  "pk": 35,
+  "fields": {
+    "order": 35,
+    "base_cake": 7,
+    "crust_type": 1,
+    "filling": 3,
+    "tiers": 2,
+    "weight": "3.50",
+    "item_price": "4900.00",
+    "text_on_cake": "С праздником! #35"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 1,
+  "fields": {
+    "order_item": 1,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 2,
+  "fields": {
+    "order_item": 2,
+    "decoration": 10,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 3,
+  "fields": {
+    "order_item": 2,
+    "decoration": 5,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 4,
+  "fields": {
+    "order_item": 2,
+    "decoration": 2,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 5,
+  "fields": {
+    "order_item": 3,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 6,
+  "fields": {
+    "order_item": 3,
+    "decoration": 3,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 7,
+  "fields": {
+    "order_item": 4,
+    "decoration": 10,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 8,
+  "fields": {
+    "order_item": 4,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 9,
+  "fields": {
+    "order_item": 5,
+    "decoration": 2,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 10,
+  "fields": {
+    "order_item": 6,
+    "decoration": 10,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 11,
+  "fields": {
+    "order_item": 7,
+    "decoration": 8,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 12,
+  "fields": {
+    "order_item": 7,
+    "decoration": 1,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 13,
+  "fields": {
+    "order_item": 7,
+    "decoration": 9,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 14,
+  "fields": {
+    "order_item": 8,
+    "decoration": 2,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 15,
+  "fields": {
+    "order_item": 9,
+    "decoration": 5,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 16,
+  "fields": {
+    "order_item": 10,
+    "decoration": 8,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 17,
+  "fields": {
+    "order_item": 11,
+    "decoration": 7,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 18,
+  "fields": {
+    "order_item": 11,
+    "decoration": 2,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 19,
+  "fields": {
+    "order_item": 11,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 20,
+  "fields": {
+    "order_item": 12,
+    "decoration": 3,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 21,
+  "fields": {
+    "order_item": 12,
+    "decoration": 9,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 22,
+  "fields": {
+    "order_item": 12,
+    "decoration": 2,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 23,
+  "fields": {
+    "order_item": 13,
+    "decoration": 2,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 24,
+  "fields": {
+    "order_item": 13,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 25,
+  "fields": {
+    "order_item": 14,
+    "decoration": 4,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 26,
+  "fields": {
+    "order_item": 14,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 27,
+  "fields": {
+    "order_item": 14,
+    "decoration": 1,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 28,
+  "fields": {
+    "order_item": 15,
+    "decoration": 9,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 29,
+  "fields": {
+    "order_item": 16,
+    "decoration": 4,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 30,
+  "fields": {
+    "order_item": 16,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 31,
+  "fields": {
+    "order_item": 16,
+    "decoration": 9,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 32,
+  "fields": {
+    "order_item": 17,
+    "decoration": 2,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 33,
+  "fields": {
+    "order_item": 17,
+    "decoration": 5,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 34,
+  "fields": {
+    "order_item": 18,
+    "decoration": 10,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 35,
+  "fields": {
+    "order_item": 18,
+    "decoration": 3,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 36,
+  "fields": {
+    "order_item": 18,
+    "decoration": 8,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 37,
+  "fields": {
+    "order_item": 19,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 38,
+  "fields": {
+    "order_item": 19,
+    "decoration": 8,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 39,
+  "fields": {
+    "order_item": 20,
+    "decoration": 3,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 40,
+  "fields": {
+    "order_item": 21,
+    "decoration": 5,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 41,
+  "fields": {
+    "order_item": 21,
+    "decoration": 7,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 42,
+  "fields": {
+    "order_item": 21,
+    "decoration": 9,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 43,
+  "fields": {
+    "order_item": 22,
+    "decoration": 10,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 44,
+  "fields": {
+    "order_item": 22,
+    "decoration": 8,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 45,
+  "fields": {
+    "order_item": 22,
+    "decoration": 3,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 46,
+  "fields": {
+    "order_item": 23,
+    "decoration": 9,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 47,
+  "fields": {
+    "order_item": 23,
+    "decoration": 4,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 48,
+  "fields": {
+    "order_item": 23,
+    "decoration": 7,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 49,
+  "fields": {
+    "order_item": 24,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 50,
+  "fields": {
+    "order_item": 25,
+    "decoration": 1,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 51,
+  "fields": {
+    "order_item": 25,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 52,
+  "fields": {
+    "order_item": 26,
+    "decoration": 1,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 53,
+  "fields": {
+    "order_item": 26,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 54,
+  "fields": {
+    "order_item": 27,
+    "decoration": 3,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 55,
+  "fields": {
+    "order_item": 27,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 56,
+  "fields": {
+    "order_item": 28,
+    "decoration": 6,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 57,
+  "fields": {
+    "order_item": 28,
+    "decoration": 7,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 58,
+  "fields": {
+    "order_item": 28,
+    "decoration": 2,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 59,
+  "fields": {
+    "order_item": 29,
+    "decoration": 10,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 60,
+  "fields": {
+    "order_item": 29,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 61,
+  "fields": {
+    "order_item": 29,
+    "decoration": 3,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 62,
+  "fields": {
+    "order_item": 30,
+    "decoration": 1,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 63,
+  "fields": {
+    "order_item": 30,
+    "decoration": 10,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 64,
+  "fields": {
+    "order_item": 30,
+    "decoration": 6,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 65,
+  "fields": {
+    "order_item": 31,
+    "decoration": 1,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 66,
+  "fields": {
+    "order_item": 32,
+    "decoration": 4,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 67,
+  "fields": {
+    "order_item": 32,
+    "decoration": 7,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 68,
+  "fields": {
+    "order_item": 32,
+    "decoration": 5,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 69,
+  "fields": {
+    "order_item": 33,
+    "decoration": 7,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 70,
+  "fields": {
+    "order_item": 33,
+    "decoration": 2,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 71,
+  "fields": {
+    "order_item": 33,
+    "decoration": 3,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 72,
+  "fields": {
+    "order_item": 34,
+    "decoration": 8,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 73,
+  "fields": {
+    "order_item": 34,
+    "decoration": 10,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 74,
+  "fields": {
+    "order_item": 34,
+    "decoration": 4,
+    "quantity": 1,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.orderitemdecoration",
+  "pk": 75,
+  "fields": {
+    "order_item": 35,
+    "decoration": 5,
+    "quantity": 2,
+    "custom_notes": "Разместить по центру изделия"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 1,
+  "fields": {
+    "base_cake": 9,
+    "customer": [
+      "marina"
+    ],
+    "rating": 5,
+    "text": "Шоколадный трюфель — рай для сладкоежек. Плотный, насыщенный, настоящий бельгийский шоколад.",
+    "created_at": "2026-11-15T08:38:59.209Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 2,
+  "fields": {
+    "base_cake": 14,
+    "customer": [
+      "anna"
+    ],
+    "rating": 5,
+    "text": "Начинка манго-маракуйя — это шедевр! Очень сочно, кислинка идеально балансирует бисквит.",
+    "created_at": "2026-11-15T08:38:59.216Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 3,
+  "fields": {
+    "base_cake": 29,
+    "customer": [
+      "marina"
+    ],
+    "rating": 5,
+    "text": "Шоколадный трюфель — рай для сладкоежек. Плотный, насыщенный, настоящий бельгийский шоколад.",
+    "created_at": "2026-11-15T08:38:59.222Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 4,
+  "fields": {
+    "base_cake": 29,
+    "customer": [
+      "olga"
+    ],
+    "rating": 5,
+    "text": "Вкусный классический торт, чувствуются натуральные ингредиенты, никакого маргарина.",
+    "created_at": "2026-11-15T08:38:59.230Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 5,
+  "fields": {
+    "base_cake": 7,
+    "customer": [
+      "dmitry"
+    ],
+    "rating": 5,
+    "text": "Очень переживали за доставку, но привезли минута в минуту, торт в идеальном состоянии.",
+    "created_at": "2026-11-15T08:38:59.236Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 6,
+  "fields": {
+    "base_cake": 15,
+    "customer": [
+      "marina"
+    ],
+    "rating": 5,
+    "text": "Начинка манго-маракуйя — это шедевр! Очень сочно, кислинка идеально балансирует бисквит.",
+    "created_at": "2026-11-15T08:38:59.243Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 7,
+  "fields": {
+    "base_cake": 11,
+    "customer": [
+      "olga"
+    ],
+    "rating": 5,
+    "text": "Спасибо за помощь в выборе начинки! Менеджер помог определиться с весом на компанию.",
+    "created_at": "2026-11-15T08:38:59.251Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 8,
+  "fields": {
+    "base_cake": 21,
+    "customer": [
+      "artem"
+    ],
+    "rating": 4,
+    "text": "Очень переживали за доставку, но привезли минута в минуту, торт в идеальном состоянии.",
+    "created_at": "2026-11-15T08:38:59.258Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 9,
+  "fields": {
+    "base_cake": 14,
+    "customer": [
+      "sergey"
+    ],
+    "rating": 5,
+    "text": "Спасибо за помощь в выборе начинки! Менеджер помог определиться с весом на компанию.",
+    "created_at": "2026-11-15T08:38:59.265Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 10,
+  "fields": {
+    "base_cake": 1,
+    "customer": [
+      "marina"
+    ],
+    "rating": 4,
+    "text": "Торт превзошёл все ожидания! Коржи очень нежные, крем воздушный и в меру сладкий. Все гости были в восторге!",
+    "created_at": "2026-11-15T08:38:59.272Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 11,
+  "fields": {
+    "base_cake": 6,
+    "customer": [
+      "svetlana"
+    ],
+    "rating": 5,
+    "text": "Вкусный классический торт, чувствуются натуральные ингредиенты, никакого маргарина.",
+    "created_at": "2026-11-15T08:38:59.279Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 12,
+  "fields": {
+    "base_cake": 30,
+    "customer": [
+      "sergey"
+    ],
+    "rating": 5,
+    "text": "Заказываем уже третий раз, качество всегда на высоте. Идеальный сервис и пунктуальность.",
+    "created_at": "2026-11-15T08:38:59.286Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 13,
+  "fields": {
+    "base_cake": 19,
+    "customer": [
+      "anna"
+    ],
+    "rating": 5,
+    "text": "Торт превзошёл все ожидания! Коржи очень нежные, крем воздушный и в меру сладкий. Все гости были в восторге!",
+    "created_at": "2026-11-15T08:38:59.292Z"
+  }
+},
+{
+  "model": "bakery.review",
+  "pk": 14,
+  "fields": {
+    "base_cake": 25,
+    "customer": [
+      "sergey"
+    ],
+    "rating": 5,
+    "text": "Заказывали на день рождения дочки. Оформление просто ювелирное, ягоды свежайшие, спасибо кондитерам!",
+    "created_at": "2026-11-15T08:38:59.299Z"
+  }
+}
+]

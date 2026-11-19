@@ -1,0 +1,72 @@
+<mxfile host="app.diagrams.net" modified="2026-11-11T20:00:00.000Z" agent="5.0" version="21.0.0" type="device">
+  <diagram id="BPMN_Shift_Planning_ToBe" name="BPMN_Shift_Planning_ToBe">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1060" pageHeight="360" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_sh_chef" value="Шеф-кондитер" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=#FEF3C7;strokeColor=#4A5568;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="30" width="1020" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_sh_sys" value="Веб-сервис (Панель смен)" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=#EFF6FF;strokeColor=#4A5568;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="170" width="1020" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="start_3" value="Начало планового
+периода смен" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#D4EDDA;strokeColor=#28A745;strokeWidth=2;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_sh_chef">
+          <mxGeometry x="50" y="45" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="task_3_1" value="Авторизоваться
+в панели управления" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_sh_chef">
+          <mxGeometry x="130" y="40" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_3_2" value="Задать дату смены и
+лимит веса (кг)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_sh_chef">
+          <mxGeometry x="285" y="40" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_3_3" value="Валидация квоты веса
+(35 кг / 45 кг)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_sh_sys">
+          <mxGeometry x="450" y="45" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gw_3" value="Данные
+корректны?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3CD;strokeColor=#856404;strokeWidth=1.5;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_sh_sys">
+          <mxGeometry x="620" y="50" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="task_3_4" value="Запись ConfectionerShift
+в базу данных" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_sh_sys">
+          <mxGeometry x="700" y="45" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="task_3_5" value="Обновление календаря
+на сайте для клиентов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#1A73E8;strokeWidth=1.5;arcSize=10;fontFamily=Helvetica;fontSize=11;align=center;" vertex="1" parent="lane_sh_sys">
+          <mxGeometry x="875" y="45" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="end_3" value="Смены цеха
+утверждены" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8D7DA;strokeColor=#DC3545;strokeWidth=3;fontFamily=Helvetica;fontSize=10;fontStyle=1;align=center;" vertex="1" parent="lane_sh_chef">
+          <mxGeometry x="925" y="45" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="start_3" target="task_3_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_3_1" target="task_3_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_3_2" target="task_3_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_3_3" target="gw_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_5" value="Нет (ошибка)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="gw_3" target="task_3_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_6" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="gw_3" target="task_3_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_3_4" target="task_3_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2D3748;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=10;" edge="1" parent="1" source="task_3_5" target="end_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

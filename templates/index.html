@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Кондитерская «SweetCraft» — Авторские торты на заказ{% endblock %}
+
+{% block content %}
+  <!-- Hero блок -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1 class="hero-title">
+        Соберите торт своей мечты с <span>гарантией готовности в срок</span>
+      </h1>
+      <p class="hero-desc">
+        Индивидуальный подбор веса, начинки, коржей и сложного декора. Умная система контролирует суточный лимит цеха и исключает предпраздничный срыв заказов.
+      </p>
+      <div class="hero-actions">
+        <a href="{% url 'cake_builder' %}" class="btn btn-primary btn-lg">✨ Собрать свой торт</a>
+        <a href="{% url 'catalog' %}" class="btn btn-secondary btn-lg">📖 Каталог десертов</a>
+      </div>
+    </div>
+    <div style="font-size: 110px; text-align: center; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+      🎂
+    </div>
+  </section>
+
+  <!-- Преимущества сервиса -->
+  <section class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">⚡</span>
+      <h3 class="feature-title">Мгновенный точный расчёт</h3>
+      <p class="feature-desc">
+        Итоговая цена считается автоматически на сервере по формуле: вес, тариф начинки и выбранный декор. Никаких скрытых доплат при выдаче.
+      </p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛡️</span>
+      <h3 class="feature-title">Защита от овербукинга</h3>
+      <p class="feature-desc">
+        Контроль суточной нормы веса в смене кондитеров. Если цех заполнен, дата блокируется, гарантируя идеальное качество каждому принятому заказу.
+      </p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🍓</span>
+      <h3 class="feature-title">Натуральные ингредиенты</h3>
+      <p class="feature-desc">
+        Настоящий бельгийский шоколад, сливочное масло 82.5%, маскарпоне и свежие отборные ягоды по стандартам ГОСТ и СанПиН.
+      </p>
+    </div>
+  </section>
+
+  <!-- Популярные торты -->
+  <section style="margin-bottom: 50px;">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Популярные десерты цеха</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">Выберите готовый рецепт или доработайте его в конструкторе</p>
+      </div>
+      <a href="{% url 'catalog' %}" class="btn btn-secondary">Смотреть все торты →</a>
+    </div>
+
+    <div class="cakes-grid">
+      {% for cake in popular_cakes %}
+        <div class="cake-card">
+          <div class="cake-img-wrap">
+            {% if cake.image %}
+              <img src="{{ cake.image.url }}" alt="{{ cake.title }}">
+            {% else %}
+              🎂
+            {% endif %}
+          </div>
+          <div class="cake-card-body">
+            <a href="{% url 'cake_detail' cake.slug %}" class="cake-card-title">{{ cake.title }}</a>
+            <p class="cake-card-desc">{{ cake.description }}</p>
+            <div class="cake-card-footer">
+              <div class="cake-price">
+                от {{ cake.base_price }} ₽
+                <span>/ {{ cake.default_weight }} кг</span>
+              </div>
+              <a href="{% url 'cake_builder' %}?base_cake={{ cake.id }}" class="btn btn-primary btn-sm">Заказать</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Отзывы покупателей -->
+  <section>
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Отзывы наших клиентов</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">Реальные впечатления о вкусе, бисквитах и пунктуальности доставки</p>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+      {% for review in recent_reviews %}
+        <div class="review-item">
+          <div class="review-header">
+            <span class="review-author">👤 {{ review.customer.first_name|default:review.customer.username }}</span>
+            <span class="review-stars">{{ review.get_rating_display }}</span>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">{{ review.text }}</p>
+          <div style="font-size: 12px; color: var(--text-light); font-weight: 600;">
+            Торт: «{{ review.base_cake.title }}» • {{ review.created_at|date:"d.m.Y" }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

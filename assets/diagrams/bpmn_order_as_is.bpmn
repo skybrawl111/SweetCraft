@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                  id="Definitions_Order_AsIs"
+                  targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Confectionery" name="Кондитерская «SweetCraft» (Процесс As-Is)" processRef="Process_Order_AsIs" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Order_AsIs" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Customer" name="Клиент (Покупатель)">
+        <bpmn:flowNodeRef>Start_NeedCake</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SendWhatsApp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ClarifyDetails</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PayPrepayment</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_RefusalPrice</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Manager" name="Менеджер заказов">
+        <bpmn:flowNodeRef>Task_ReadMessage</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CalcPriceManual</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AskBaker</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_CustomerAgrees</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CheckBank</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_WriteSticker</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Baker" name="Шеф-кондитер цеха">
+        <bpmn:flowNodeRef>Task_CheckJournal</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_CapacityOk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_OverloadRefusal</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_OrderOnSticker</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="Start_NeedCake" name="Возникла потребность в торте">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_SendWhatsApp" name="Отправить запрос с фото в WhatsApp">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ReadMessage" name="Прочитать сообщение и запросить детали">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ClarifyDetails" name="Ответить на вопросы о весе и начинке">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_CalcPriceManual" name="Вручную рассчитать цену на калькуляторе">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AskBaker" name="Пойти в цех и спросить о загрузке">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_CheckJournal" name="Проверить записи в бумажном журнале">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_CapacityOk" name="Успеем выпечь на дату?">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+      <bpmn:outgoing>Flow_Overload</bpmn:outgoing>
+      <bpmn:outgoing>Flow_CapacityYes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="End_OverloadRefusal" name="Отказ клиенту: цех перегружен">
+      <bpmn:incoming>Flow_Overload</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_CustomerAgrees" name="Клиент согласен с ценой?">
+      <bpmn:incoming>Flow_CapacityYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_PriceNo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_PriceYes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="End_RefusalPrice" name="Отказ клиента из-за цены">
+      <bpmn:incoming>Flow_PriceNo</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_PayPrepayment" name="Перевести 50% предоплаты по номеру карты">
+      <bpmn:incoming>Flow_PriceYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_CheckBank" name="Проверить перевод в мобильном банке">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_WriteSticker" name="Записать заказ в журнал и выписать стикер">
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_OrderOnSticker" name="Заказ зафиксирован в цеху на стикере">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="Start_NeedCake" targetRef="Task_SendWhatsApp" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_SendWhatsApp" targetRef="Task_ReadMessage" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_ReadMessage" targetRef="Task_ClarifyDetails" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_ClarifyDetails" targetRef="Task_CalcPriceManual" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_CalcPriceManual" targetRef="Task_AskBaker" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_AskBaker" targetRef="Task_CheckJournal" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_CheckJournal" targetRef="Gateway_CapacityOk" />
+    <bpmn:sequenceFlow id="Flow_Overload" name="[Перегруз цеха]" sourceRef="Gateway_CapacityOk" targetRef="End_OverloadRefusal" />
+    <bpmn:sequenceFlow id="Flow_CapacityYes" name="[Свободно]" sourceRef="Gateway_CapacityOk" targetRef="Gateway_CustomerAgrees" />
+    <bpmn:sequenceFlow id="Flow_PriceNo" name="[Дорого]" sourceRef="Gateway_CustomerAgrees" targetRef="End_RefusalPrice" />
+    <bpmn:sequenceFlow id="Flow_PriceYes" name="[Согласен]" sourceRef="Gateway_CustomerAgrees" targetRef="Task_PayPrepayment" />
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_PayPrepayment" targetRef="Task_CheckBank" />
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="Task_CheckBank" targetRef="Task_WriteSticker" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_WriteSticker" targetRef="End_OrderOnSticker" />
+  </bpmn:process>
+</bpmn:definitions>

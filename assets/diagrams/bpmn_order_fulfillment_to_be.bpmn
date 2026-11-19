@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  id="Definitions_Fulfillment_ToBe"
+                  targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_4">
+    <bpmn:participant id="Participant_Fulfillment" name="Процесс 3: Выдача готового изделия и сбор отзывов" processRef="Process_Fulfillment" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Fulfillment" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_4">
+      <bpmn:lane id="Lane_Baker_Fulf" name="Кондитер цеха (Мастер)">
+        <bpmn:flowNodeRef>Start_ReadyCake</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PackAndSetReady</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_HandoverCake</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SetCompleted</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Customer_Fulf" name="Клиент (Покупатель)">
+        <bpmn:flowNodeRef>Task_ArriveBakery</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_ReviewChoice</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_WriteReview</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_NoReview</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_System_Fulf" name="Веб-сервис Django (Бэкенд)">
+        <bpmn:flowNodeRef>Task_SendEmailReady</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PublishReview</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_OrderFinishedAndRated</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="Start_ReadyCake" name="Торт готов и охлажден в цеху">
+      <bpmn:outgoing>Flow_F1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_PackAndSetReady" name="Упаковать торт и перевести статус в «Готов к выдаче»">
+      <bpmn:incoming>Flow_F1</bpmn:incoming>
+      <bpmn:outgoing>Flow_F2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SendEmailReady" name="Отправить клиенту email-уведомление о готовности">
+      <bpmn:incoming>Flow_F2</bpmn:incoming>
+      <bpmn:outgoing>Flow_F3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ArriveBakery" name="Прибыть в пункт выдачи кондитерской">
+      <bpmn:incoming>Flow_F3</bpmn:incoming>
+      <bpmn:outgoing>Flow_F4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_HandoverCake" name="Сверить номер заказа и выдать торт клиенту">
+      <bpmn:incoming>Flow_F4</bpmn:incoming>
+      <bpmn:outgoing>Flow_F5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SetCompleted" name="Изменить статус заказа на «Выдан клиенту»">
+      <bpmn:incoming>Flow_F5</bpmn:incoming>
+      <bpmn:outgoing>Flow_F6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_ReviewChoice" name="Клиент желает оставить отзыв?">
+      <bpmn:incoming>Flow_F6</bpmn:incoming>
+      <bpmn:outgoing>Flow_RevNo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_RevYes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="End_NoReview" name="Заказ закрыт без публикации отзыва">
+      <bpmn:incoming>Flow_RevNo</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_WriteReview" name="Поставить оценку и написать отзыв на сайте">
+      <bpmn:incoming>Flow_RevYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_F7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_PublishReview" name="Сохранить отзыв Review в БД и опубликовать в каталоге">
+      <bpmn:incoming>Flow_F7</bpmn:incoming>
+      <bpmn:outgoing>Flow_F8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_OrderFinishedAndRated" name="Заказ полностью закрыт и оценен клиентом">
+      <bpmn:incoming>Flow_F8</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:sequenceFlow id="Flow_F1" sourceRef="Start_ReadyCake" targetRef="Task_PackAndSetReady" />
+    <bpmn:sequenceFlow id="Flow_F2" sourceRef="Task_PackAndSetReady" targetRef="Task_SendEmailReady" />
+    <bpmn:sequenceFlow id="Flow_F3" sourceRef="Task_SendEmailReady" targetRef="Task_ArriveBakery" />
+    <bpmn:sequenceFlow id="Flow_F4" sourceRef="Task_ArriveBakery" targetRef="Task_HandoverCake" />
+    <bpmn:sequenceFlow id="Flow_F5" sourceRef="Task_HandoverCake" targetRef="Task_SetCompleted" />
+    <bpmn:sequenceFlow id="Flow_F6" sourceRef="Task_SetCompleted" targetRef="Gateway_ReviewChoice" />
+    <bpmn:sequenceFlow id="Flow_RevNo" name="[Нет]" sourceRef="Gateway_ReviewChoice" targetRef="End_NoReview" />
+    <bpmn:sequenceFlow id="Flow_RevYes" name="[Да]" sourceRef="Gateway_ReviewChoice" targetRef="Task_WriteReview" />
+    <bpmn:sequenceFlow id="Flow_F7" sourceRef="Task_WriteReview" targetRef="Task_PublishReview" />
+    <bpmn:sequenceFlow id="Flow_F8" sourceRef="Task_PublishReview" targetRef="End_OrderFinishedAndRated" />
+  </bpmn:process>
+</bpmn:definitions>

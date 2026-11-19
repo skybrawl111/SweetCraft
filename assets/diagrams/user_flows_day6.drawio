@@ -1,0 +1,30 @@
+<mxfile host="Electron" modified="2026-11-17T21:00:00.000Z" agent="Antigravity" version="21.6.8" type="device">
+  <diagram id="user_flows_sweetcraft" name="SweetCraft User Flows">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f1_start" value="1. Вход в конструктор&#xa;(/builder/)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#4B5563;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_pick" value="2. Выбор веса, бисквита,&#xa;начинки и декора" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#B45309;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_cond" value="3. Проверка суточного&#xa;лимита цеха на дату?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="25" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_err" value="[ОШИБКА]: Лимит исчерпан!&#xa;(Блокировка даты в календаре)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="160" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_ok" value="4. Лимит в норме:&#xa;Оформление и предоплата" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="40" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e1_1" edge="1" parent="1" source="f1_start" target="f1_pick" style="strokeWidth=2;" />
+        <mxCell id="e1_2" edge="1" parent="1" source="f1_pick" target="f1_cond" style="strokeWidth=2;" />
+        <mxCell id="e1_3" edge="1" parent="1" source="f1_cond" target="f1_ok" style="strokeWidth=2;strokeColor=#16A34A;" value="Да (лимит OK)" />
+        <mxCell id="e1_4" edge="1" parent="1" source="f1_cond" target="f1_err" style="strokeWidth=2;strokeColor=#DC2626;" value="Нет (перегруз)" />
+        <mxCell id="e1_5" edge="1" parent="1" source="f1_err" target="f1_pick" style="strokeWidth=2;strokeColor=#DC2626;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="Выбор другого дня" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

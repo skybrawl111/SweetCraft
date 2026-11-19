@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  id="Definitions_Shifts_ToBe"
+                  targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_3">
+    <bpmn:participant id="Participant_Shifts" name="Процесс 2: Планирование смен и лимитов выпечки цеха" processRef="Process_Shifts" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Shifts" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_3">
+      <bpmn:lane id="Lane_Chef" name="Шеф-кондитер / Управляющий">
+        <bpmn:flowNodeRef>Start_ShiftPeriod</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_OpenShiftPanel</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SelectDateAndBaker</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_HolidayCheck</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SetHolidayLimit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SetStandardLimit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ClickSaveShift</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_System_Shifts" name="Веб-сервис Django (Бэкенд)">
+        <bpmn:flowNodeRef>Task_SaveShiftDB</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_UpdateQuotas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_ShiftsUpdated</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="Start_ShiftPeriod" name="Наступление периода планирования">
+      <bpmn:outgoing>Flow_S1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_OpenShiftPanel" name="Открыть панель смен в админ-разделе">
+      <bpmn:incoming>Flow_S1</bpmn:incoming>
+      <bpmn:outgoing>Flow_S2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SelectDateAndBaker" name="Выбрать дату смены и дежурного кондитера">
+      <bpmn:incoming>Flow_S2</bpmn:incoming>
+      <bpmn:outgoing>Flow_S3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_HolidayCheck" name="Смена в праздничный/выходной день?">
+      <bpmn:incoming>Flow_S3</bpmn:incoming>
+      <bpmn:outgoing>Flow_HolidayYes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_HolidayNo</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_SetHolidayLimit" name="Установить повышенный лимит (45 кг)">
+      <bpmn:incoming>Flow_HolidayYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_S4a</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SetStandardLimit" name="Установить стандартный лимит (35 кг)">
+      <bpmn:incoming>Flow_HolidayNo</bpmn:incoming>
+      <bpmn:outgoing>Flow_S4b</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ClickSaveShift" name="Нажать «Сохранить смену»">
+      <bpmn:incoming>Flow_S4a</bpmn:incoming>
+      <bpmn:incoming>Flow_S4b</bpmn:incoming>
+      <bpmn:outgoing>Flow_S5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SaveShiftDB" name="Записать объект ConfectionerShift в БД">
+      <bpmn:incoming>Flow_S5</bpmn:incoming>
+      <bpmn:outgoing>Flow_S6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_UpdateQuotas" name="Обновить доступные квоты для конструктора заказов">
+      <bpmn:incoming>Flow_S6</bpmn:incoming>
+      <bpmn:outgoing>Flow_S7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_ShiftsUpdated" name="Производственные лимиты смен актуализированы">
+      <bpmn:incoming>Flow_S7</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:sequenceFlow id="Flow_S1" sourceRef="Start_ShiftPeriod" targetRef="Task_OpenShiftPanel" />
+    <bpmn:sequenceFlow id="Flow_S2" sourceRef="Task_OpenShiftPanel" targetRef="Task_SelectDateAndBaker" />
+    <bpmn:sequenceFlow id="Flow_S3" sourceRef="Task_SelectDateAndBaker" targetRef="Gateway_HolidayCheck" />
+    <bpmn:sequenceFlow id="Flow_HolidayYes" name="[Да]" sourceRef="Gateway_HolidayCheck" targetRef="Task_SetHolidayLimit" />
+    <bpmn:sequenceFlow id="Flow_HolidayNo" name="[Нет]" sourceRef="Gateway_HolidayCheck" targetRef="Task_SetStandardLimit" />
+    <bpmn:sequenceFlow id="Flow_S4a" sourceRef="Task_SetHolidayLimit" targetRef="Task_ClickSaveShift" />
+    <bpmn:sequenceFlow id="Flow_S4b" sourceRef="Task_SetStandardLimit" targetRef="Task_ClickSaveShift" />
+    <bpmn:sequenceFlow id="Flow_S5" sourceRef="Task_ClickSaveShift" targetRef="Task_SaveShiftDB" />
+    <bpmn:sequenceFlow id="Flow_S6" sourceRef="Task_SaveShiftDB" targetRef="Task_UpdateQuotas" />
+    <bpmn:sequenceFlow id="Flow_S7" sourceRef="Task_UpdateQuotas" targetRef="End_ShiftsUpdated" />
+  </bpmn:process>
+</bpmn:definitions>

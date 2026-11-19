@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/uploads/temp/
+
+# Environment secrets
+.env
+~$*.docx
+~$*.doc
+
+# Backups and historical archives
+backups/
+.git_backup_days1_5/
+*.bak*
+*.sqlite3.bak*
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db

@@ -1,0 +1,52 @@
+<mxfile host="Electron" modified="2026-11-15T09:00:00.000Z" agent="Antigravity" version="21.6.8" type="device">
+  <diagram id="er_sweetcraft" name="ERD SweetCraft 3NF">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u1" value="CustomUser&#xa;--&#xa;+ id: BIGINT (PK)&#xa;username: VARCHAR(150)&#xa;role: VARCHAR(20)&#xa;phone: VARCHAR(25)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="Category&#xa;--&#xa;+ id: BIGINT (PK)&#xa;name: VARCHAR(100)&#xa;slug: VARCHAR(100)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cr1" value="CrustType&#xa;--&#xa;+ id: BIGINT (PK)&#xa;name: VARCHAR(100)&#xa;extra_cost: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" value="Filling&#xa;--&#xa;+ id: BIGINT (PK)&#xa;name: VARCHAR(100)&#xa;price_per_kg: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d1" value="Decoration&#xa;--&#xa;+ id: BIGINT (PK)&#xa;name: VARCHAR(120)&#xa;cost: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="o1" value="Order&#xa;--&#xa;+ id: BIGINT (PK)&#xa;# customer_id: BIGINT (FK)&#xa;delivery_date: DATE&#xa;status: VARCHAR(20)&#xa;total_price: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="460" y="40" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="oi1" value="OrderItem&#xa;--&#xa;+ id: BIGINT (PK)&#xa;# order_id: BIGINT (FK)&#xa;# crust_type_id: BIGINT (FK)&#xa;# filling_id: BIGINT (FK)&#xa;tiers: SMALLINT&#xa;weight: DECIMAL&#xa;item_price: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="760" y="40" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="oid1" value="OrderItemDecoration (M:M)&#xa;--&#xa;+ id: BIGINT (PK)&#xa;# order_item_id: BIGINT (FK)&#xa;# decoration_id: BIGINT (FK)&#xa;quantity: SMALLINT&#xa;custom_notes: VARCHAR" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bc1" value="BaseCake&#xa;--&#xa;+ id: BIGINT (PK)&#xa;# category_id: BIGINT (FK)&#xa;# crust_type_id: BIGINT (FK)&#xa;title: VARCHAR(150)&#xa;base_price: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="340" y="240" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="cs1" value="ConfectionerShift&#xa;--&#xa;+ id: BIGINT (PK)&#xa;# confectioner_id: BIGINT (FK)&#xa;shift_date: DATE&#xa;max_capacity_weight: DECIMAL" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="250" y="40" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="u1" target="o1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="o1" target="oi1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="oi1" target="oid1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="d1" target="oid1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

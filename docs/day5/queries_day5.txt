@@ -1,0 +1,135 @@
+================================================================================
+ПРАКТИЧЕСКОЕ ЗАНЯТИЕ № 5. АНАЛИТИЧЕСКИЕ ЗАПРОСЫ К БАЗЕ ДАННЫХ (ORM & SQL)
+Проект: Веб-сервис приема заказов кондитерской «SweetCraft» (Вариант 1)
+Студент: Адилов Чошгун, группа ИСП-41
+================================================================================
+
+--------------------------------------------------------------------------------
+ЗАПРОС 1: ФИЛЬТРАЦИЯ ПО УСЛОВИЮ (Доступные начинки в ценовом диапазоне)
+--------------------------------------------------------------------------------
+Бизнес-задача: Выбрать все активные начинки для онлайн-конструктора со стоимостью от 1200 до 1500 руб./кг.
+
+[ORM-запрос]:
+qs1 = Filling.objects.filter(
+    is_active=True,
+    price_per_kg__gte=Decimal('1200.00'),
+    price_per_kg__lte=Decimal('1500.00')
+).order_by('price_per_kg')
+
+[Сгенерированный SQL (через str(queryset.query))]:
+SELECT "bakery_filling"."id", "bakery_filling"."name", "bakery_filling"."description", "bakery_filling"."price_per_kg", "bakery_filling"."is_active" FROM "bakery_filling" WHERE ("bakery_filling"."is_active" AND "bakery_filling"."price_per_kg" >= 1200.00 AND "bakery_filling"."price_per_kg" <= 1500.00) ORDER BY "bakery_filling"."price_per_kg" ASC
+
+[Результат выполнения (найдено записей: 7)]:
+ID   | Название начинки                              | Цена за 1 кг | Статус  
+---------------------------------------------------------------------------
+1    | Малина - мята (ягодное компоте)               |  1200.00 руб. | Активна 
+9    | Крем-чиз на белом шоколаде                    |  1200.00 руб. | Активна 
+6    | Черничный чизкейк                             |  1250.00 руб. | Активна 
+5    | Тёмный бельгийский шоколад с пьяной вишней    |  1300.00 руб. | Активна 
+2    | Сливочный маскарпоне с садовой клубникой      |  1350.00 руб. | Активна 
+4    | Манго - маракуйя (тропический мусс)           |  1400.00 руб. | Активна 
+10   | Карамелизованная груша с сыром Дорблю         |  1500.00 руб. | Активна 
+
+--------------------------------------------------------------------------------
+ЗАПРОС 2: СОРТИРОВКА ПО НЕСКОЛЬКИМ ПОЛЯМ (Каталог тортов по цене и названию)
+--------------------------------------------------------------------------------
+Бизнес-задача: Выгрузить десерты каталога, отсортированные по возрастанию базовой цены, а при одинаковой цене — по алфавиту названия.
+
+[ORM-запрос]:
+qs2 = BaseCake.objects.filter(is_available=True).order_by('base_price', 'title')[:8]
+
+[Сгенерированный SQL (через str(queryset.query))]:
+SELECT "bakery_basecake"."id", "bakery_basecake"."category_id", "bakery_basecake"."title", "bakery_basecake"."slug", "bakery_basecake"."description", "bakery_basecake"."base_price", "bakery_basecake"."default_weight", "bakery_basecake"."crust_type_id", "bakery_basecake"."image", "bakery_basecake"."is_available", "bakery_basecake"."created_at" FROM "bakery_basecake" WHERE "bakery_basecake"."is_available" ORDER BY "bakery_basecake"."base_price" ASC, "bakery_basecake"."title" ASC LIMIT 8
+
+[Результат выполнения (первые 8 позиций)]:
+ID   | Название торта/десерта                        | Базовая цена   | Вес по умолч.
+--------------------------------------------------------------------------------
+10   | Бенто Шоколадный экспресс                     |   1200.00 руб. |    0.50 кг
+11   | Бенто Ягодный пломбир                         |   1200.00 руб. |    0.50 кг
+12   | Бенто Карамельный арахис                      |   1250.00 руб. |    0.50 кг
+13   | Бенто Красный бархат Мини                     |   1250.00 руб. |    0.50 кг
+24   | Набор макаронс Фисташка-Малина (8 шт)         |   1300.00 руб. |    0.20 кг
+20   | Набор капкейков Ягодный микс (6 шт)           |   1500.00 руб. |    0.60 кг
+22   | Набор капкейков Красный бархат (6 шт)         |   1600.00 руб. |    0.60 кг
+25   | Тарт с лесной земляникой и кремом дипломат    |   2200.00 руб. |    1.20 кг
+
+--------------------------------------------------------------------------------
+ЗАПРОС 3: АГРЕГАЦИЯ ДАННЫХ (Расчет финансово-производственных показателей)
+--------------------------------------------------------------------------------
+Бизнес-задача: Посчитать сводную статистику по подтвержденным заказам: количество, суммарную выручку, средний чек и максимальную стоимость заказа.
+
+[ORM-запрос]:
+qs3 = Order.objects.filter(
+    status__in=['ACCEPTED', 'IN_PROGRESS', 'READY', 'COMPLETED']
+).aggregate(
+    total_orders=Count('id'),
+    total_revenue=Sum('total_price'),
+    avg_check=Avg('total_price'),
+    max_order=Max('total_price')
+)
+
+[Сгенерированный SQL агрегации]:
+SELECT COUNT("bakery_order"."id") AS "total_orders", (CAST(SUM("bakery_order"."total_price") AS NUMERIC)) AS "total_revenue", (CAST(AVG("bakery_order"."total_price") AS NUMERIC)) AS "avg_check", (CAST(MAX("bakery_order"."total_price") AS NUMERIC)) AS "max_order" FROM "bakery_order" WHERE "bakery_order"."status" IN ('ACCEPTED', 'IN_PROGRESS', 'READY', 'COMPLETED')
+
+[Результат выполнения агрегации]:
+1. Общее количество принятых заказов: 33 шт.
+2. Суммарная выручка по заказам:      202925.00 руб.
+3. Средний чек клиента кондитерской:  6149.24 руб.
+4. Максимальная стоимость заказа:      9650.00 руб.
+
+--------------------------------------------------------------------------------
+ЗАПРОС 4: ВЫБОРКА ПО СВЯЗИ «ОДИН КО МНОГИМ» (select_related без проблемы N+1)
+--------------------------------------------------------------------------------
+Бизнес-задача: Загрузить позиции заказов со статусом ACCEPTED сразу с присоединенными объектами Заказа, Клиента, Коржа и Начинки через единый SQL JOIN.
+
+[ORM-запрос]:
+qs4 = OrderItem.objects.select_related(
+    'order', 'order__customer', 'crust_type', 'filling'
+).filter(order__status='ACCEPTED')[:5]
+
+[Сгенерированный SQL с INNER JOIN]:
+SELECT "bakery_orderitem"."id", "bakery_orderitem"."order_id", "bakery_orderitem"."base_cake_id", "bakery_orderitem"."crust_type_id", "bakery_orderitem"."filling_id", "bakery_orderitem"."tiers", "bakery_orderitem"."weight", "bakery_orderitem"."item_price", "bakery_orderitem"."text_on_cake", "bakery_order"."id", "bakery_order"."customer_id", "bakery_order"."delivery_date", "bakery_order"."status", "bakery_order"."total_price", "bakery_order"."contact_phone", "bakery_order"."delivery_address", "bakery_order"."comment", "bakery_order"."created_at", "bakery_order"."updated_at", "bakery_customuser"."id", "bakery_customuser"."password", "bakery_customuser"."last_login", "bakery_customuser"."is_superuser", "bakery_customuser"."username", "bakery_customuser"."first_name", "bakery_customuser"."last_name", "bakery_customuser"."email", "bakery_customuser"."is_staff", "bakery_customuser"."is_active", "bakery_customuser"."date_joined", "bakery_customuser"."role", "bakery_customuser"."phone", "bakery_crusttype"."id", "bakery_crusttype"."name", "bakery_crusttype"."extra_cost", "bakery_crusttype"."description", "bakery_filling"."id", "bakery_filling"."name", "bakery_filling"."description", "bakery_filling"."price_per_kg", "bakery_filling"."is_active" FROM "bakery_orderitem" INNER JOIN "bakery_order" ON ("bakery_orderitem"."order_id" = "bakery_order"."id") INNER JOIN "bakery_customuser" ON ("bakery_order"."customer_id" = "bakery_customuser"."id") INNER JOIN "bakery_crusttype" ON ("bakery_orderitem"."crust_type_id" = "bakery_crusttype"."id") INNER JOIN "bakery_filling" ON ("bakery_orderitem"."filling_id" = "bakery_filling"."id") WHERE "bakery_order"."status" = ACCEPTED ORDER BY "bakery_orderitem"."id" ASC LIMIT 5
+
+[Результат выполнения (первые 5 позиций в работе)]:
+Поз.#  | Заказ#  | Клиент           | Корж                      | Начинка                        | Вес    | Цена      
+---------------------------------------------------------------------------------------------------------
+12     | #12     | Дмитрий Иванов   | Классический шифоновый .. | Малина - мята (ягодное компо.. | 3.50кг | 6300.00 руб.
+20     | #20     | Виктор Семенов   | Красный бархат (Red Vel.. | Черничный чизкейк              | 2.50кг | 4125.00 руб.
+28     | #28     | Игорь Федоров    | Классический шифоновый .. | Карамелизованная груша с сыр.. | 5.00кг | 9650.00 руб.
+35     | #35     | Марина Васильева | Классический шифоновый .. | Солёная карамель с жареным а.. | 3.50кг | 4900.00 руб.
+
+--------------------------------------------------------------------------------
+ЗАПРОС 5: ВЫБОРКА ПО СВЯЗИ «МНОГИЕ КО МНОГИМ» (prefetch_related для M:M и 1:M)
+--------------------------------------------------------------------------------
+Бизнес-задача: Загрузить торты категории «Классические торты» с предварительной пакетной выборкой всех совместимых начинок (M:M) и отзывов клиентов (1:M).
+
+[ORM-запрос]:
+qs5 = BaseCake.objects.prefetch_related(
+    'available_fillings', 'reviews'
+).filter(category__slug='classic-cakes')[:5]
+
+[Количество выполненных SQL-запросов]: 3 (вместо N+1)
+  SQL [1]: SELECT "bakery_basecake"."id", "bakery_basecake"."category_id", "bakery_basecake"."title", "bakery_basecake"."slug", "bakery_basecake"."description", "bakery_basecake"."base_price", "bakery_basecake"."default_weight", "bakery_basecake"."crust_type_id", "bakery_basecake"."image", "bakery_basecake"."is_available", "bakery_basecake"."created_at" FROM "bakery_basecake" INNER JOIN "bakery_category" ON ("bakery_basecake"."category_id" = "bakery_category"."id") WHERE "bakery_category"."slug" = 'classic-cakes' ORDER BY "bakery_basecake"."created_at" DESC LIMIT 5
+  SQL [2]: SELECT ("bakery_basecake_available_fillings"."basecake_id") AS "_prefetch_related_val_basecake_id", "bakery_filling"."id", "bakery_filling"."name", "bakery_filling"."description", "bakery_filling"."price_per_kg", "bakery_filling"."is_active" FROM "bakery_filling" INNER JOIN "bakery_basecake_available_fillings" ON ("bakery_filling"."id" = "bakery_basecake_available_fillings"."filling_id") WHERE "bakery_basecake_available_fillings"."basecake_id" IN (5, 4, 3, 2, 1) ORDER BY "bakery_filling"."name" ASC
+  SQL [3]: SELECT "bakery_review"."id", "bakery_review"."base_cake_id", "bakery_review"."customer_id", "bakery_review"."rating", "bakery_review"."text", "bakery_review"."created_at" FROM "bakery_review" WHERE "bakery_review"."base_cake_id" IN (5, 4, 3, 2, 1) ORDER BY "bakery_review"."created_at" DESC
+
+[Результат выполнения выборки тортов с начинками и отзывами]:
+• Торт: «Наполеон Хрустящий» (Цена: от 2600.00 руб.)
+  - Совместимые начинки M:M: Карамелизованная груша с сыром Дорблю, Сливочный маскарпоне с садовой клубникой, Тёмный бельгийский шоколад с пьяной вишней, Черничный чизкейк
+  - Отзывы: 0 шт., средний рейтинг: 0.0 / 5.0
+
+• Торт: «Медовик Деревенский» (Цена: от 2400.00 руб.)
+  - Совместимые начинки M:M: Карамелизованная груша с сыром Дорблю, Крем-чиз на белом шоколаде
+  - Отзывы: 0 шт., средний рейтинг: 0.0 / 5.0
+
+• Торт: «Морковный с пряной карамелью» (Цена: от 2500.00 руб.)
+  - Совместимые начинки M:M: Солёная карамель с жареным арахисом, Тёмный бельгийский шоколад с пьяной вишней, Черничный чизкейк
+  - Отзывы: 0 шт., средний рейтинг: 0.0 / 5.0
+
+• Торт: «Шоколадный трюфель Премиум» (Цена: от 3200.00 руб.)
+  - Совместимые начинки M:M: Крем-чиз на белом шоколаде, Малина - мята (ягодное компоте), Манго - маракуйя (тропический мусс), Фисташковый ганаш с малиной
+  - Отзывы: 0 шт., средний рейтинг: 0.0 / 5.0
+
+• Торт: «Красный бархат классический» (Цена: от 2800.00 руб.)
+  - Совместимые начинки M:M: Малина - мята (ягодное компоте), Манго - маракуйя (тропический мусс), Сливочный маскарпоне с садовой клубникой, Солёная карамель с жареным арахисом
+  - Отзывы: 1 шт., средний рейтинг: 4.0 / 5.0

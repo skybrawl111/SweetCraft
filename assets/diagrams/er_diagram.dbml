@@ -1,0 +1,118 @@
+// База данных веб-сервиса кондитерской «SweetCraft» (Вариант 1)
+// Нотация: Crow's Foot (dbdiagram.io)
+// Студент: Адилов Чошгун, группа ИСП-41
+
+Table CustomUser {
+  id bigint [pk, increment]
+  username varchar(150) [unique, not null]
+  role varchar(20) [not null, default: 'customer']
+  phone varchar(25)
+  email varchar(254)
+  first_name varchar(150)
+  last_name varchar(150)
+  is_staff boolean [not null, default: false]
+  is_active boolean [not null, default: true]
+}
+
+Table Category {
+  id bigint [pk, increment]
+  name varchar(100) [unique, not null]
+  slug varchar(100) [unique, not null]
+  description text
+  is_active boolean [not null, default: true]
+}
+
+Table CrustType {
+  id bigint [pk, increment]
+  name varchar(100) [unique, not null]
+  extra_cost decimal(8,2) [not null, default: 0.00]
+  description text
+}
+
+Table Filling {
+  id bigint [pk, increment]
+  name varchar(100) [unique, not null]
+  price_per_kg decimal(8,2) [not null]
+  description text
+  is_active boolean [not null, default: true]
+}
+
+Table Decoration {
+  id bigint [pk, increment]
+  name varchar(120) [unique, not null]
+  cost decimal(8,2) [not null, default: 0.00]
+  description text
+}
+
+Table BaseCake {
+  id bigint [pk, increment]
+  category_id bigint [ref: > Category.id]
+  crust_type_id bigint [ref: > CrustType.id]
+  title varchar(150) [not null]
+  slug varchar(150) [unique, not null]
+  description text [not null]
+  base_price decimal(8,2) [not null]
+  default_weight decimal(4,2) [not null, default: 2.00]
+  is_available boolean [not null, default: true]
+  created_at datetime [not null]
+}
+
+Table ConfectionerShift {
+  id bigint [pk, increment]
+  shift_date date [unique, not null]
+  confectioner_id bigint [ref: > CustomUser.id]
+  max_capacity_weight decimal(5,2) [not null, default: 35.00]
+  notes varchar(200)
+}
+
+Table Order {
+  id bigint [pk, increment]
+  customer_id bigint [ref: > CustomUser.id, not null]
+  delivery_date date [not null]
+  status varchar(20) [not null, default: 'NEW']
+  total_price decimal(10,2) [not null, default: 0.00]
+  contact_phone varchar(25) [not null]
+  delivery_address varchar(250)
+  comment text
+  created_at datetime [not null]
+  updated_at datetime [not null]
+}
+
+Table OrderItem {
+  id bigint [pk, increment]
+  order_id bigint [ref: > Order.id, not null]
+  base_cake_id bigint [ref: > BaseCake.id]
+  crust_type_id bigint [ref: > CrustType.id, not null]
+  filling_id bigint [ref: > Filling.id, not null]
+  tiers smallint [not null, default: 1]
+  weight decimal(4,2) [not null]
+  item_price decimal(10,2) [not null, default: 0.00]
+  text_on_cake varchar(150)
+}
+
+Table OrderItemDecoration {
+  id bigint [pk, increment]
+  order_item_id bigint [ref: > OrderItem.id, not null]
+  decoration_id bigint [ref: > Decoration.id, not null]
+  quantity smallint [not null, default: 1]
+  custom_notes varchar(200)
+}
+
+Table DesignSketch {
+  id bigint [pk, increment]
+  order_item_id bigint [ref: > OrderItem.id, not null]
+  image varchar(100) [not null]
+  uploaded_at datetime [not null]
+}
+
+Table Review {
+  id bigint [pk, increment]
+  base_cake_id bigint [ref: > BaseCake.id, not null]
+  customer_id bigint [ref: > CustomUser.id, not null]
+  rating smallint [not null, default: 5]
+  text text [not null]
+  created_at datetime [not null]
+}
+
+Ref: OrderItem.id < OrderItemDecoration.order_item_id
+Ref: Decoration.id < OrderItemDecoration.decoration_id

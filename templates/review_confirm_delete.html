@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление отзыва — Кондитерская «SweetCraft»{% endblock %}
+
+{% block content %}
+  <div style="max-width: 480px; margin: 40px auto; background: var(--bg-card); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); text-align: center;">
+    <div style="font-size: 48px; margin-bottom: 12px;">⚠️</div>
+    <h1 style="font-size: 22px; font-weight: 800; margin-bottom: 12px;">Подтверждение удаления отзыва</h1>
+    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">
+      Вы действительно хотите безвозвратно удалить свой отзыв на торт <strong>«{{ review.base_cake.title }}»</strong>?
+    </p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div style="display:flex; gap:12px; justify-content:center;">
+        <button type="submit" class="btn btn-danger">Да, удалить отзыв (п. 5)</button>
+        <a href="{% url 'cake_detail' review.base_cake.slug %}" class="btn btn-secondary">Отмена</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

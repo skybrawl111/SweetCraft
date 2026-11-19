@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  id="Definitions_Order_ToBe"
+                  targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_2">
+    <bpmn:participant id="Participant_Confectionery_ToBe" name="Кондитерская «SweetCraft» (Процесс To-Be)" processRef="Process_Order_ToBe" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Order_ToBe" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_2">
+      <bpmn:lane id="Lane_Customer_ToBe" name="Клиент (Покупатель)">
+        <bpmn:flowNodeRef>Start_ToBe</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SelectParams</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_UploadAndSubmit</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_System_ToBe" name="Веб-сервис Django (Бэкенд)">
+        <bpmn:flowNodeRef>Task_AsyncCalc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_LimitCheck</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ShowWarning</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ShowPrice</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SaveAtomic</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GenDocAndEmail</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Baker_ToBe" name="Шеф-кондитер цеха">
+        <bpmn:flowNodeRef>Task_PrintTechCard</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_SuccessToBe</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="Start_ToBe" name="Переход в онлайн-конструктор">
+      <bpmn:outgoing>Flow_T1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_SelectParams" name="Выбрать вес, начинку, корж и дату выдачи">
+      <bpmn:incoming>Flow_T1</bpmn:incoming>
+      <bpmn:incoming>Flow_RetryDate</bpmn:incoming>
+      <bpmn:outgoing>Flow_T2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AsyncCalc" name="Рассчитать цену и проверить лимит цеха (fetch API)">
+      <bpmn:incoming>Flow_T2</bpmn:incoming>
+      <bpmn:outgoing>Flow_T3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_LimitCheck" name="Суточный лимит смены превышен?">
+      <bpmn:incoming>Flow_T3</bpmn:incoming>
+      <bpmn:outgoing>Flow_LimitOver</bpmn:outgoing>
+      <bpmn:outgoing>Flow_LimitOk</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_ShowWarning" name="Вывести предупреждение и заблокировать дату">
+      <bpmn:incoming>Flow_LimitOver</bpmn:incoming>
+      <bpmn:outgoing>Flow_RetryDate</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ShowPrice" name="Отобразить расчетную цену и статус даты">
+      <bpmn:incoming>Flow_LimitOk</bpmn:incoming>
+      <bpmn:outgoing>Flow_T4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_UploadAndSubmit" name="Загрузить эскиз (до 5 МБ) и нажать «Оформить заказ»">
+      <bpmn:incoming>Flow_T4</bpmn:incoming>
+      <bpmn:outgoing>Flow_T5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SaveAtomic" name="Зафиксировать заказ в БД (transaction.atomic)">
+      <bpmn:incoming>Flow_T5</bpmn:incoming>
+      <bpmn:outgoing>Flow_T6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_GenDocAndEmail" name="Сгенерировать техкарту и отправить email клиенту">
+      <bpmn:incoming>Flow_T6</bpmn:incoming>
+      <bpmn:outgoing>Flow_T7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_PrintTechCard" name="Распечатать техкарту и выпекать по рецептуре">
+      <bpmn:incoming>Flow_T7</bpmn:incoming>
+      <bpmn:outgoing>Flow_T8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_SuccessToBe" name="Заказ принят в цех с гарантией брони веса">
+      <bpmn:incoming>Flow_T8</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:sequenceFlow id="Flow_T1" sourceRef="Start_ToBe" targetRef="Task_SelectParams" />
+    <bpmn:sequenceFlow id="Flow_T2" sourceRef="Task_SelectParams" targetRef="Task_AsyncCalc" />
+    <bpmn:sequenceFlow id="Flow_T3" sourceRef="Task_AsyncCalc" targetRef="Gateway_LimitCheck" />
+    <bpmn:sequenceFlow id="Flow_LimitOver" name="[Да, перегруз]" sourceRef="Gateway_LimitCheck" targetRef="Task_ShowWarning" />
+    <bpmn:sequenceFlow id="Flow_RetryDate" sourceRef="Task_ShowWarning" targetRef="Task_SelectParams" />
+    <bpmn:sequenceFlow id="Flow_LimitOk" name="[Нет, свободно]" sourceRef="Gateway_LimitCheck" targetRef="Task_ShowPrice" />
+    <bpmn:sequenceFlow id="Flow_T4" sourceRef="Task_ShowPrice" targetRef="Task_UploadAndSubmit" />
+    <bpmn:sequenceFlow id="Flow_T5" sourceRef="Task_UploadAndSubmit" targetRef="Task_SaveAtomic" />
+    <bpmn:sequenceFlow id="Flow_T6" sourceRef="Task_SaveAtomic" targetRef="Task_GenDocAndEmail" />
+    <bpmn:sequenceFlow id="Flow_T7" sourceRef="Task_GenDocAndEmail" targetRef="Task_PrintTechCard" />
+    <bpmn:sequenceFlow id="Flow_T8" sourceRef="Task_PrintTechCard" targetRef="End_SuccessToBe" />
+  </bpmn:process>
+</bpmn:definitions>
