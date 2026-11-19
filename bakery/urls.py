@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     # Главная и каталог (п. 6)
     path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
     path('catalog/', views.catalog, name='catalog'),
     path('cakes/<slug:slug>/', views.cake_detail, name='cake_detail'),
 

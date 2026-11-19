@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Кондитерская «SweetCraft» — Заказ авторских тортов{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   {% block extra_head %}{% endblock %}
 </head>
@@ -13,96 +16,108 @@
   <!-- Шапка сайта (Header) -->
   <header class="header">
     <div class="container navbar">
-      <a href="{% url 'home' %}" class="brand">
-        🎂 SweetCraft
+      <a href="{% url 'home' %}" class="brand" aria-label="На главную страницу SweetCraft">
+        <span class="brand-icon">🎂</span>
+        <span class="brand-name">SweetCraft</span>
         <span class="brand-badge">Кондитерская</span>
       </a>
 
-      <nav>
+      <!-- Кнопка мобильного меню (Гамбургер ☰) -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Открыть меню навигации" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <!-- Навигационное меню (Nav) -->
+      <nav class="nav-menu" id="nav-menu" aria-label="Основная навигация">
         <ul class="nav-links">
           <li><a href="{% url 'home' %}" class="nav-link">Главная</a></li>
           <li><a href="{% url 'catalog' %}" class="nav-link">Каталог десертов</a></li>
-          <li><a href="{% url 'cake_builder' %}" class="nav-link" style="color: var(--primary); font-weight: 700;">✨ Конструктор торта</a></li>
+          <li><a href="{% url 'cake_builder' %}" class="nav-link nav-link-builder">✨ Конструктор торта</a></li>
+          <li><a href="{% url 'about' %}" class="nav-link">О кондитерской</a></li>
           
           {% if user.is_authenticated %}
             <li><a href="{% url 'order_list' %}" class="nav-link">Мои заказы</a></li>
             {% if user.is_manager_or_admin or user.role == 'confectioner' %}
-              <li><a href="{% url 'dashboard' %}" class="nav-link" style="color: var(--accent); font-weight: 700;">📊 Сводные показатели</a></li>
-              <li><a href="{% url 'admin:index' %}" class="nav-link" target="_blank">Админка</a></li>
+              <li><a href="{% url 'dashboard' %}" class="nav-link nav-link-dashboard">📊 Цех / Аналитика</a></li>
+              <li><a href="{% url 'admin:index' %}" class="nav-link" target="_blank" rel="noopener">Админка</a></li>
             {% endif %}
           {% endif %}
         </ul>
-      </nav>
 
-      <div class="nav-auth">
-        {% if user.is_authenticated %}
-          <div class="user-badge">
-            <a href="{% url 'profile' %}" style="text-decoration:none; color:inherit; font-weight:600;">
-              👤 {{ user.first_name|default:user.username }}
-            </a>
-            <span class="role-pill">{{ user.get_role_display }}</span>
-          </div>
-          <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Выйти</a>
-        {% else %}
-          <a href="{% url 'login' %}" class="btn btn-secondary btn-sm">Войти</a>
-          <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Регистрация</a>
-        {% endif %}
-      </div>
+        <div class="nav-auth">
+          {% if user.is_authenticated %}
+            <div class="user-badge">
+              <a href="{% url 'profile' %}" class="user-profile-link">
+                👤 {{ user.first_name|default:user.username }}
+              </a>
+              <span class="role-pill">{{ user.get_role_display }}</span>
+            </div>
+            <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Выйти</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-secondary btn-sm">Войти</a>
+            <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Регистрация</a>
+          {% endif %}
+        </div>
+      </nav>
     </div>
   </header>
 
-  <!-- Блок сообщений (Flash Messages) -->
-  <div class="container messages-container">
+  <!-- Блок системных сообщений (Flash Messages) -->
+  <aside class="container messages-container" aria-label="Системные уведомления">
     {% if messages %}
       {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
+        <div class="alert alert-{{ message.tags }}" role="alert">
           {{ message }}
         </div>
       {% endfor %}
     {% endif %}
-  </div>
+  </aside>
 
-  <!-- Основной контент страницы -->
-  <main class="main-content">
+  <!-- Основное содержимое страницы (Main) -->
+  <main class="main-content" id="main-content">
     <div class="container">
       {% block content %}{% endblock %}
     </div>
   </main>
 
-  <!-- Подвал (Footer) -->
+  <!-- Подвал сайта (Footer) -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <h3 style="color:#FFF; margin-bottom:12px;">🎂 Кондитерская «SweetCraft»</h3>
-          <p style="font-size:13px; line-height:1.6;">
-            Изготовление заказных тортов и крафтовых десертов под ваши параметры.<br>
-            Автоматический контроль загрузки цеха гарантирует 100% готовность к вашему празднику.
+        <section class="footer-col footer-col-main">
+          <h2 class="footer-heading">🎂 Кондитерская «SweetCraft»</h2>
+          <p class="footer-text">
+            Изготовление заказных тортов и авторских десертов по индивидуальным параметрам.<br>
+            Автоматический контроль суточной мощности цеха гарантирует 100% готовность к вашему празднику.
           </p>
-        </div>
-        <div>
-          <h4 style="color:#FFF; margin-bottom:12px;">Разделы</h4>
-          <ul style="list-style:none; line-height:2;">
+        </section>
+        <section class="footer-col">
+          <h3 class="footer-subheading">Разделы сайта</h3>
+          <ul class="footer-links">
             <li><a href="{% url 'catalog' %}">Каталог десертов</a></li>
             <li><a href="{% url 'cake_builder' %}">Онлайн-конструктор</a></li>
+            <li><a href="{% url 'about' %}">О производстве цеха</a></li>
             <li><a href="{% url 'order_list' %}">Отслеживание заказа</a></li>
           </ul>
-        </div>
-        <div>
-          <h4 style="color:#FFF; margin-bottom:12px;">Контакты цеха</h4>
-          <p style="font-size:13px; line-height:1.8;">
+        </section>
+        <section class="footer-col">
+          <h3 class="footer-subheading">Контакты цеха</h3>
+          <address class="footer-contacts">
             📍 г. Москва, ул. Арбат, д. 25<br>
             📞 +7 (495) 123-45-67<br>
             ⏰ Ежедневно с 8:00 до 21:00
-          </p>
-        </div>
+          </address>
+        </section>
       </div>
       <div class="footer-bottom">
-        Учебный проект по производственной практике (4 курс). Вариант № 1: «Заказ тортов и десертов в кондитерской». Разработано на Django 5.x.
+        Учебный проект по производственной практике (4 курс, специальность 09.02.07). Вариант № 1: «Заказ тортов и десертов в кондитерской».
       </div>
     </div>
   </footer>
 
+  <script src="{% static 'js/main.js' %}"></script>
   {% block extra_scripts %}{% endblock %}
 </body>
 </html>

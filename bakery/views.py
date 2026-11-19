@@ -23,13 +23,17 @@ from .forms import (
 )
 
 def home(request):
-    """Главная страница кондитерской"""
+    """Главная страница кондитерской (Занятие 7)"""
     popular_cakes = BaseCake.objects.filter(is_available=True)[:6]
     recent_reviews = Review.objects.select_related('customer', 'base_cake').all()[:4]
     return render(request, 'index.html', {
         'popular_cakes': popular_cakes,
         'recent_reviews': recent_reviews
     })
+
+def about(request):
+    """Статическая страница о кондитерской и стандартах цеха (Занятие 8)"""
+    return render(request, 'about.html')
 
 def catalog(request):
     """
