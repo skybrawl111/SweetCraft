@@ -1,116 +1,82 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Сводные показатели и аналитика цеха — Кондитерская «SweetCraft»{% endblock %}
+{% block title %}Сводная аналитика и загрузка цеха — Кондитерская «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div class="section-header">
+  <header class="section-header">
     <div>
-      <h1 class="section-title">📊 Сводные аналитические показатели (п. 7)</h1>
-      <p style="color: var(--text-muted); font-size: 14px;">
-        Агрегированная статистика работы кондитерского цеха: выручка, объём выпечки и график загрузки смен.
+      <h1 class="page-title">📊 Аналитика производства и смены кондитеров</h1>
+      <p class="section-subtitle">
+        Агрегированная статистика цеха: выручка, средний чек, объём готовой продукции и мониторинг суточных лимитов.
       </p>
     </div>
     {% if user.is_manager_or_admin %}
-      <a href="{% url 'order_export_csv' %}" class="btn btn-secondary">
-        📥 Скачать реестр заказов (CSV)
-      </a>
+      <div class="header-actions">
+        <a href="{% url 'order_export_csv' %}" class="btn btn-secondary">
+          📥 Экспорт реестра в CSV
+        </a>
+      </div>
     {% endif %}
-  </div>
+  </header>
 
-  <!-- 4 агрегированных показателя по требованию п. 7 (Count, Sum, Avg, Доля) -->
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-label">Всего заказов (Count)</div>
+  <!-- 4 агрегированных показателя -->
+  <section class="metrics-grid" aria-label="Ключевые показатели">
+    <article class="metric-card">
+      <div class="metric-label">Всего заказов в системе</div>
       <div class="metric-val">{{ total_orders }}</div>
-      <div class="metric-sub">Количество оформленных заявок</div>
-    </div>
+      <div class="metric-sub">Количество оформленных нарядов</div>
+    </article>
 
-    <div class="metric-card">
-      <div class="metric-label">Общая выручка (Sum)</div>
+    <article class="metric-card">
+      <div class="metric-label">Общая сумма выручки</div>
       <div class="metric-val">{{ total_revenue|floatformat:0 }} ₽</div>
-      <div class="metric-sub">Сумма активных и выполненных заказов</div>
-    </div>
+      <div class="metric-sub">Активные и выданные заказы</div>
+    </article>
 
-    <div class="metric-card">
-      <div class="metric-label">Средний чек (Avg)</div>
+    <article class="metric-card">
+      <div class="metric-label">Средний чек одного изделия</div>
       <div class="metric-val">{{ avg_check|floatformat:0 }} ₽</div>
-      <div class="metric-sub">Средняя стоимость одного торта</div>
-    </div>
+      <div class="metric-sub">Средняя стоимость авторского торта</div>
+    </article>
 
-    <div class="metric-card">
-      <div class="metric-label">Выполнено вовремя (Доля)</div>
-      <div class="metric-val" style="color: var(--success);">{{ completed_share }}%</div>
-      <div class="metric-sub">Доля закрытых заказов без нареканий</div>
-    </div>
-  </div>
+    <article class="metric-card">
+      <div class="metric-label">Выполнено в срок</div>
+      <div class="metric-val metric-val-success">{{ completed_share }}%</div>
+      <div class="metric-sub">Индекс пунктуальности выдачи</div>
+    </article>
+  </section>
 
-  <!-- График / диаграмма загрузки кондитерского цеха по дням (п. 7) -->
-  <div class="chart-card">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+  <!-- График / диаграмма загрузки цеха по сменам -->
+  <section class="chart-card" aria-label="Суточная загрузка цеха">
+    <div class="chart-card-header">
       <div>
-        <h2 style="font-size:18px; font-weight:700;">📈 График суточной загрузки цеха по дням (кг готовой продукции)</h2>
-        <p style="font-size:13px; color:var(--text-muted);">
-          Особое требование: сопоставление фактического веса заказов в работе и установленного суточного лимита цеха (35–45 кг/день).
+        <h2 class="chart-title">📈 График суточной загрузки цеха по дням (кг готовых изделий)</h2>
+        <p class="section-subtitle">
+          Контроль лимита: фактический вес тортов в работе против установленной мощности смены (35 кг).
         </p>
       </div>
-      <div style="display:flex; gap:16px; font-size:13px;">
-        <span><span style="display:inline-block; width:12px; height:12px; background:var(--primary); border-radius:2px;"></span> Вес в работе (кг)</span>
-        <span><span style="display:inline-block; width:12px; height:12px; background:var(--border-color); border-radius:2px;"></span> Лимит цеха</span>
+      <div class="chart-legend">
+        <span class="legend-item"><span class="legend-color legend-color-booked"></span> Занято (кг)</span>
+        <span class="legend-item"><span class="legend-color legend-color-limit"></span> Лимит цеха (35 кг)</span>
       </div>
     </div>
 
+    <!-- Столбчатая диаграмма -->
     <div class="bar-chart-container">
-      {% for d in chart_dates %}
-        {% with b=chart_booked|slice:forloop.counter0|last %}
-          <div class="bar-col">
-            <!-- Вычисление высоты столбика в % -->
-            <div class="bar-pill" style="height: {% widthratio chart_booked|slice:forloop.counter0|last 45 180 %}px;">
-              <div class="bar-val-text">
-                {{ chart_booked|slice:forloop.counter0|last }} кг
-              </div>
+      {% for s in shifts_data %}
+        <div class="bar-col">
+          <div class="bar-track">
+            <div class="bar-fill" style="height: {{ s.percent }}%;">
+              <span class="bar-val-badge">{{ s.booked|floatformat:1 }}</span>
             </div>
-            <div class="bar-label">{{ d }}</div>
           </div>
-        {% endwith %}
+          <div class="bar-label">{{ s.date|date:"d.m" }}</div>
+          <div class="bar-sub">{{ s.booked|floatformat:0 }}/{{ s.capacity|floatformat:0 }} кг</div>
+        </div>
+      {% empty %}
+        <p class="empty-hint">Данные о смене кондитеров временно отсутствуют.</p>
       {% endfor %}
     </div>
-
-    <div style="font-size:12px; color:var(--text-muted); text-align:right; margin-top:8px;">
-      * Столбцы отражают суммарный забронированный вес тортов в работе на указанную дату.
-    </div>
-  </div>
-
-  <!-- Дополнительная сводная аналитика: популярность начинок -->
-  <div style="background:var(--bg-card); padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
-    <h3 style="font-size:18px; font-weight:700; margin-bottom:16px;">🍰 Рейтинг популярных начинок цеха</h3>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Название начинки</th>
-            <th>Тариф за 1 кг</th>
-            <th>Количество заказов</th>
-            <th>Статус</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for f in top_fillings %}
-            <tr>
-              <td><strong>{{ f.name }}</strong></td>
-              <td>{{ f.price_per_kg }} руб.</td>
-              <td><span class="role-pill" style="font-size:13px; font-weight:bold;">{{ f.order_count }} тортов</span></td>
-              <td>
-                {% if f.is_active %}
-                  <span class="badge badge-ready">Активна</span>
-                {% else %}
-                  <span class="badge badge-cancelled">Временно нет</span>
-                {% endif %}
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  </section>
 {% endblock %}

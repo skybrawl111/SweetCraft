@@ -1,65 +1,65 @@
 {% extends 'base.html' %}
 
-{% block title %}Профиль пользователя — Кондитерская «SweetCraft»{% endblock %}
+{% block title %}Личный кабинет: {{ user.username }} — Кондитерская «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div class="section-header">
+  <header class="section-header">
     <div>
-      <h1 class="section-title">Профиль пользователя: {{ user.username }}</h1>
-      <p style="color: var(--text-muted); font-size: 14px;">Личные данные, роль и управление учётной записью</p>
+      <h1 class="page-title">Личный кабинет пользователя: {{ user.username }}</h1>
+      <p class="section-subtitle">Персональные данные, история заказов и отзывы</p>
     </div>
-    <div style="display:flex; gap:10px;">
-      <a href="{% url 'password_change' %}" class="btn btn-secondary btn-sm">Сменить пароль (п. 3)</a>
+    <div class="header-actions">
+      <a href="{% url 'password_change' %}" class="btn btn-secondary btn-sm">Сменить пароль</a>
     </div>
-  </div>
+  </header>
 
-  <div class="builder-layout">
-    <div>
-      <div class="builder-card">
-        <h2 class="builder-section-title">Данные аккаунта</h2>
-        <table class="table" style="box-shadow:none; border:none;">
+  <div class="profile-layout">
+    <div class="profile-main-col">
+      <article class="builder-step-card">
+        <h2 class="step-title">Учетные данные</h2>
+        <table class="user-data-table">
           <tr>
-            <th style="width: 35%;">Логин:</th>
+            <th class="data-th">Логин:</th>
             <td>{{ user.username }}</td>
           </tr>
           <tr>
-            <th>ФИО:</th>
+            <th class="data-th">ФИО:</th>
             <td>{{ user.get_full_name|default:"Не указано" }}</td>
           </tr>
           <tr>
-            <th>Электронная почта:</th>
+            <th class="data-th">Электронная почта:</th>
             <td>{{ user.email }}</td>
           </tr>
           <tr>
-            <th>Телефон:</th>
+            <th class="data-th">Номер телефона:</th>
             <td>{{ user.phone|default:"Не указан" }}</td>
           </tr>
           <tr>
-            <th>Роль в системе:</th>
-            <td><span class="role-pill" style="font-size:13px;">{{ user.get_role_display }}</span></td>
+            <th class="data-th">Роль в системе:</th>
+            <td><span class="role-pill">{{ user.get_role_display }}</span></td>
           </tr>
           <tr>
-            <th>Дата регистрации:</th>
+            <th class="data-th">Дата регистрации:</th>
             <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
           </tr>
         </table>
-      </div>
+      </article>
 
-      <!-- Мои последние заказы -->
-      <div class="builder-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h2 class="builder-section-title" style="margin-bottom:0; border:none; padding:0;">Мои последние заказы</h2>
-          <a href="{% url 'order_list' %}" style="font-size:13px; color:var(--primary); font-weight:600;">Все заказы →</a>
+      <!-- Последние заказы -->
+      <article class="builder-step-card">
+        <div class="card-inline-header">
+          <h2 class="step-title">История моих заказов</h2>
+          <a href="{% url 'order_list' %}" class="link-more">Все заказы →</a>
         </div>
         <div class="table-responsive">
-          <table class="table">
+          <table class="custom-data-table">
             <thead>
               <tr>
-                <th>№</th>
-                <th>Дата выдачи</th>
+                <th>Номер</th>
+                <th>Дата готовности</th>
                 <th>Статус</th>
-                <th>Сумма</th>
-                <th></th>
+                <th>Итого</th>
+                <th>Действие</th>
               </tr>
             </thead>
             <tbody>
@@ -67,42 +67,41 @@
                 <tr>
                   <td><strong>#{{ o.id }}</strong></td>
                   <td>{{ o.delivery_date|date:"d.m.Y" }}</td>
-                  <td>{{ o.get_status_display }}</td>
-                  <td><strong>{{ o.total_price }} ₽</strong></td>
+                  <td><span class="status-badge status-{{ o.status|lower }}">{{ o.get_status_display }}</span></td>
+                  <td><strong>{{ o.total_price|floatformat:0 }} ₽</strong></td>
                   <td><a href="{% url 'order_detail' o.id %}" class="btn btn-secondary btn-sm">Открыть</a></td>
                 </tr>
               {% empty %}
-                <tr><td colspan="5" style="text-align:center; color:var(--text-muted);">У вас пока нет заказов.</td></tr>
+                <tr><td colspan="5" class="empty-table-cell">У вас пока нет оформленных заказов.</td></tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
-      </div>
+      </article>
     </div>
 
     <!-- Мои отзывы -->
-    <div>
-      <div class="live-summary-sticky" style="position:static;">
-        <h3 class="summary-header">Мои отзывы ({{ reviews.count }})</h3>
+    <aside class="profile-aside-col">
+      <div class="info-card">
+        <h2 class="info-card-title">Мои отзывы ({{ reviews.count }})</h2>
         {% for r in reviews %}
-          <div style="background:var(--bg-body); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-color); margin-bottom:12px; font-size:13px;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <div class="profile-review-card">
+            <div class="review-card-top">
               <strong>{{ r.base_cake.title }}</strong>
-              <span style="color:#FFA000;">{{ r.rating }}★</span>
+              <span class="review-stars">{{ r.rating }}★</span>
             </div>
-            <p style="color:var(--text-muted); margin-bottom:6px;">{{ r.text|truncatechars:80 }}</p>
-            <div style="display:flex; justify-content:space-between; font-size:11px;">
-              <span>{{ r.created_at|date:"d.m.Y" }}</span>
-              <span>
-                <a href="{% url 'review_edit' r.id %}" style="color:var(--info); margin-right:6px;">Изм.</a>
-                <a href="{% url 'review_delete' r.id %}" style="color:var(--danger);">Удалить</a>
-              </span>
+            <p class="profile-review-snippet">{{ r.text|truncatechars:85 }}</p>
+            <div class="review-card-bottom">
+              <span class="review-date-badge">{{ r.created_at|date:"d.m.Y" }}</span>
+              <div class="review-actions-group">
+                <a href="{% url 'review_delete' r.id %}" class="review-del-link">Удалить</a>
+              </div>
             </div>
           </div>
         {% empty %}
-          <p style="color:var(--text-muted); font-size:13px;">Вы пока не оставляли отзывов.</p>
+          <p class="empty-hint">Вы еще не оставляли отзывов о десертах.</p>
         {% endfor %}
       </div>
-    </div>
+    </aside>
   </div>
 {% endblock %}

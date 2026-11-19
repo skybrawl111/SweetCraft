@@ -4,57 +4,57 @@
 {% block title %}Журнал заказов — Кондитерская «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div class="section-header">
+  <header class="section-header">
     <div>
-      <h1 class="section-title">
+      <h1 class="page-title">
         {% if user.is_manager_or_admin or user.role == 'confectioner' %}
           Журнал заказов кондитерского цеха
         {% else %}
-          Мои заказы тортов
+          История моих заказов
         {% endif %}
       </h1>
-      <p style="color: var(--text-muted); font-size: 14px;">
-        Отслеживание этапов выпечки, готовности и параметров оформленных десертов.
+      <p class="section-subtitle">
+        Мониторинг этапов выпечки, статусов готовности и параметров десертов.
       </p>
     </div>
 
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <div class="header-actions">
       {% if user.is_manager_or_admin %}
         <a href="{% url 'order_export_csv' %}" class="btn btn-secondary">
-          📥 Экспорт в CSV (п. 10)
+          📥 Экспорт в CSV
         </a>
       {% endif %}
       <a href="{% url 'cake_builder' %}" class="btn btn-primary">
-        ✨ Новый заказ
+        ✨ Создать заказ
       </a>
     </div>
-  </div>
+  </header>
 
-  <!-- Фильтр по статусу -->
-  <div style="margin-bottom: 20px; display:flex; gap:8px; flex-wrap:wrap;">
-    <a href="{% url 'order_list' %}" class="btn {% if not status_filter %}btn-primary{% else %}btn-secondary{% endif %} btn-sm">Все заказы</a>
+  <!-- Фильтр по статусам -->
+  <nav class="status-filter-nav" aria-label="Фильтрация заказов по статусу">
+    <a href="{% url 'order_list' %}" class="page-btn {% if not status_filter %}active{% endif %}">Все заказы</a>
     {% for s_val, s_name in status_choices %}
-      <a href="{% url 'order_list' %}?status={{ s_val }}" class="btn {% if status_filter == s_val %}btn-primary{% else %}btn-secondary{% endif %} btn-sm">
+      <a href="{% url 'order_list' %}?status={{ s_val }}" class="page-btn {% if status_filter == s_val %}active{% endif %}">
         {{ s_name }}
       </a>
     {% endfor %}
-  </div>
+  </nav>
 
   <!-- Таблица заказов -->
   <div class="table-responsive">
-    <table class="table">
+    <table class="custom-data-table">
       <thead>
         <tr>
           <th>№</th>
-          <th>Дата выдачи</th>
+          <th>Дата готовности</th>
           {% if user.is_manager_or_admin or user.role == 'confectioner' %}
             <th>Клиент</th>
             <th>Телефон</th>
           {% endif %}
           <th>Параметры торта</th>
-          <th>Вес</th>
+          <th>Масса</th>
           <th>Статус</th>
-          <th>Сумма</th>
+          <th>Стоимость</th>
           <th>Действия</th>
         </tr>
       </thead>
@@ -63,8 +63,8 @@
           <tr>
             <td><strong>#{{ order.id }}</strong></td>
             <td>
-              <span style="font-weight:600;">{{ order.delivery_date|date:"d.m.Y" }}</span>
-              <div style="font-size:11px; color:var(--text-light);">Оформлен: {{ order.created_at|date:"d.m.Y" }}</div>
+              <span class="cell-strong">{{ order.delivery_date|date:"d.m.Y" }}</span>
+              <div class="cell-date-hint">Оформлен: {{ order.created_at|date:"d.m.Y" }}</div>
             </td>
             {% if user.is_manager_or_admin or user.role == 'confectioner' %}
               <td>{{ order.customer.first_name|default:order.customer.username }}</td>
@@ -72,50 +72,32 @@
             {% endif %}
             <td>
               {% for item in order.items.all %}
-                <div>
-                  <strong>{{ item.base_cake.title|default:"Индивидуальный торт" }}</strong>
-                  <div style="font-size:12px; color:var(--text-muted);">
-                    Начинка: {{ item.filling.name }} | Корж: {{ item.crust_type.name }}
-                  </div>
+                <div class="order-item-desc">
+                  <strong>{{ item.base_cake.title|default:"Индивидуальный торт" }}</strong><br>
+                  Корж: {{ item.crust_type.name }} • Начинка: {{ item.filling.name }}
                 </div>
-              {% empty %}
-                <span style="color:var(--text-muted);">—</span>
               {% endfor %}
             </td>
             <td>
               {% for item in order.items.all %}
-                <strong>{{ item.weight }} кг</strong>
+                <span class="weight-badge">{{ item.weight|floatformat:1 }} кг</span>
               {% endfor %}
             </td>
             <td>
-              {% if order.status == 'NEW' %}
-                <span class="badge badge-new">Новый</span>
-              {% elif order.status == 'ACCEPTED' %}
-                <span class="badge badge-accepted">Принят</span>
-              {% elif order.status == 'IN_PROGRESS' %}
-                <span class="badge badge-in_progress">В работе</span>
-              {% elif order.status == 'READY' %}
-                <span class="badge badge-ready">Готов</span>
-              {% elif order.status == 'COMPLETED' %}
-                <span class="badge badge-completed">Выдан</span>
-              {% elif order.status == 'CANCELLED' %}
-                <span class="badge badge-cancelled">Отменён</span>
-              {% endif %}
+              <span class="status-badge status-{{ order.status|lower }}">{{ order.get_status_display }}</span>
             </td>
+            <td><strong>{{ order.total_price|floatformat:0 }} ₽</strong></td>
             <td>
-              <strong style="color:var(--primary); font-size:15px;">{{ order.total_price }} ₽</strong>
-            </td>
-            <td>
-              <div style="display:flex; gap:6px;">
+              <div class="card-btn-group">
                 <a href="{% url 'order_detail' order.id %}" class="btn btn-secondary btn-sm">Открыть</a>
-                <a href="{% url 'order_print' order.id %}" class="btn btn-secondary btn-sm" title="Печать бланка">🖨️</a>
+                <a href="{% url 'order_print' order.id %}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">Печать</a>
               </div>
             </td>
           </tr>
         {% empty %}
           <tr>
-            <td colspan="8" style="text-align:center; padding:30px; color:var(--text-muted);">
-              Заказов не найдено. <a href="{% url 'cake_builder' %}">Оформите свой первый торт прямо сейчас!</a>
+            <td colspan="{% if user.is_manager_or_admin or user.role == 'confectioner' %}8{% else %}6{% endif %}" class="empty-table-cell">
+              В данном статусе заказов не найдено.
             </td>
           </tr>
         {% endfor %}

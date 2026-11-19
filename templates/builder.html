@@ -4,148 +4,178 @@
 {% block title %}Интерактивный конструктор торта — Кондитерская «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div class="section-header">
+  <header class="section-header">
     <div>
-      <h1 class="section-title">✨ Конструктор авторского торта</h1>
-      <p style="color: var(--text-muted); font-size: 14px;">
-        Выберите желаемые параметры. Цена рассчитывается на лету, а сервер проверяет свободный лимит мощности цеха на дату.
+      <h1 class="page-title">✨ Конструктор авторского десерта</h1>
+      <p class="section-subtitle">
+        Индивидуальный расчет массы, начинки, ярусов и декора. Сервер моментально проверяет суточный лимит цеха (35 кг).
       </p>
     </div>
-  </div>
+  </header>
 
-  <form method="post" enctype="multipart/form-data" id="cake-builder-form">
+  <form method="post" enctype="multipart/form-data" id="cake-builder-form" class="validated-form" data-validate="true">
     {% csrf_token %}
 
     {% if form.non_field_errors %}
-      <div class="alert alert-danger" style="margin-bottom: 20px;">
+      <div class="alert alert-danger" role="alert">
         {{ form.non_field_errors }}
       </div>
     {% endif %}
 
     <div class="builder-layout">
-      <!-- Левая колонка: параметры рецепта и заказа -->
-      <div>
-        <!-- 1. Выбор основы и коржа -->
-        <div class="builder-card">
-          <h2 class="builder-section-title">1. Основа торта и бисквит</h2>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-            <div>
-              <label class="filter-title" for="id_base_cake">{{ form.base_cake.label }}</label>
+      <!-- Левая колонка: пошаговая конфигурация торта -->
+      <section class="builder-steps-col" aria-label="Параметры десерта">
+        <!-- Шаг 1. Основа торта и масса -->
+        <article class="builder-step-card">
+          <div class="builder-step-header">
+            <span class="step-num" aria-hidden="true">1</span>
+            <h2 class="step-title">Основа торта, бисквит и вес</h2>
+          </div>
+
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="id_base_cake">{{ form.base_cake.label }}</label>
               {{ form.base_cake }}
-              {% if form.base_cake.errors %}<div style="color:var(--danger); font-size:12px;">{{ form.base_cake.errors }}</div>{% endif %}
+              <div class="client-error-msg"></div>
+              {% if form.base_cake.errors %}<div class="form-field-error">{{ form.base_cake.errors }}</div>{% endif %}
             </div>
-            <div>
-              <label class="filter-title" for="id_crust_type">{{ form.crust_type.label }} *</label>
+            <div class="form-group">
+              <label class="form-label" for="id_crust_type">{{ form.crust_type.label }} *</label>
               {{ form.crust_type }}
-              {% if form.crust_type.errors %}<div style="color:var(--danger); font-size:12px;">{{ form.crust_type.errors }}</div>{% endif %}
+              <div class="client-error-msg"></div>
+              {% if form.crust_type.errors %}<div class="form-field-error">{{ form.crust_type.errors }}</div>{% endif %}
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-            <div>
-              <label class="filter-title" for="id_filling">{{ form.filling.label }} *</label>
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="id_filling">{{ form.filling.label }} *</label>
               {{ form.filling }}
-              {% if form.filling.errors %}<div style="color:var(--danger); font-size:12px;">{{ form.filling.errors }}</div>{% endif %}
+              <div class="client-error-msg"></div>
+              {% if form.filling.errors %}<div class="form-field-error">{{ form.filling.errors }}</div>{% endif %}
             </div>
-            <div>
-              <label class="filter-title" for="id_weight">{{ form.weight.label }} *</label>
+            <div class="form-group">
+              <label class="form-label" for="id_weight">
+                {{ form.weight.label }} *
+                <span class="weight-badge" id="weight-badge-val">2.0 кг</span>
+              </label>
               {{ form.weight }}
-              <small style="color:var(--text-muted); font-size:12px;">От 1.0 до 20.0 кг с шагом 0.5 кг</small>
-              {% if form.weight.errors %}<div style="color:var(--danger); font-size:12px;">{{ form.weight.errors }}</div>{% endif %}
+              <span class="form-hint">От 1.0 до 20.0 кг с шагом 0.5 кг</span>
+              <div class="client-error-msg"></div>
+              {% if form.weight.errors %}<div class="form-field-error">{{ form.weight.errors }}</div>{% endif %}
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- 2. Декор и оформление -->
-        <div class="builder-card">
-          <h2 class="builder-section-title">2. Декор и поздравительная надпись</h2>
+        <!-- Шаг 2. Декор и поздравление -->
+        <article class="builder-step-card">
+          <div class="builder-step-header">
+            <span class="step-num" aria-hidden="true">2</span>
+            <h2 class="step-title">Сложный декор и оформление</h2>
+          </div>
           
-          <div style="margin-bottom: 16px;">
-            <label class="filter-title">{{ form.decorations.label }}</label>
+          <div class="form-group">
+            <label class="form-label">{{ form.decorations.label }}</label>
             <div class="decor-grid">
               {% for checkbox in form.decorations %}
-                <label class="decor-item">
+                <label class="decor-checkbox-label">
                   {{ checkbox.tag }}
-                  <div>
-                    <span>{{ checkbox.choice_label }}</span>
-                  </div>
+                  <span>{{ checkbox.choice_label }}</span>
                 </label>
               {% endfor %}
             </div>
           </div>
 
-          <div style="margin-bottom: 16px;">
-            <label class="filter-title" for="id_text_on_cake">{{ form.text_on_cake.label }}</label>
+          <div class="form-group">
+            <label class="form-label" for="id_text_on_cake">{{ form.text_on_cake.label }}</label>
             {{ form.text_on_cake }}
+            <span class="form-hint">Например: «С днем рождения, София!» (до 150 символов)</span>
           </div>
 
-          <!-- Загрузка эскиза оформления (п. 9 требований) -->
-          <div>
-            <label class="filter-title" for="id_sketch_image">{{ form.sketch_image.label }}</label>
+          <!-- Загрузка эскиза оформления -->
+          <div class="form-group">
+            <label class="form-label" for="id_sketch_image">{{ form.sketch_image.label }}</label>
             {{ form.sketch_image }}
-            <small style="color:var(--text-muted); font-size:12px; display:block; margin-top:4px;">
-              Загрузите фото-референс или рисунок декора (JPG, PNG, WEBP, до 5 МБ). Кондитер изготовит торт точно по эскизу.
-            </small>
-            {% if form.sketch_image.errors %}<div style="color:var(--danger); font-size:12px; margin-top:4px;">{{ form.sketch_image.errors }}</div>{% endif %}
+            <span class="form-hint">Загрузите эскиз или фото-референс декора (JPG/PNG/WEBP до 5 МБ).</span>
+            {% if form.sketch_image.errors %}<div class="form-field-error">{{ form.sketch_image.errors }}</div>{% endif %}
           </div>
-        </div>
+        </article>
 
-        <!-- 3. Дата выдачи и контакты доставки -->
-        <div class="builder-card">
-          <h2 class="builder-section-title">3. Дата выдачи и контакты</h2>
+        <!-- Шаг 3. Дата выдачи и контакты доставки -->
+        <article class="builder-step-card">
+          <div class="builder-step-header">
+            <span class="step-num" aria-hidden="true">3</span>
+            <h2 class="step-title">Дата выдачи и контактные данные</h2>
+          </div>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-            <div>
-              <label class="filter-title" for="id_delivery_date">{{ form.delivery_date.label }} *</label>
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="id_delivery_date">{{ form.delivery_date.label }} *</label>
               {{ form.delivery_date }}
-              <small style="color:var(--text-muted); font-size:12px;">Заказы принимаются минимум за 24 часа</small>
-              {% if form.delivery_date.errors %}<div style="color:var(--danger); font-size:12px;">{{ form.delivery_date.errors }}</div>{% endif %}
+              <span class="form-hint">Заказы принимаются минимум за 24 часа</span>
+              <div class="client-error-msg"></div>
+              {% if form.delivery_date.errors %}<div class="form-field-error">{{ form.delivery_date.errors }}</div>{% endif %}
             </div>
-            <div>
-              <label class="filter-title" for="id_contact_phone">{{ form.contact_phone.label }} *</label>
+            <div class="form-group">
+              <label class="form-label" for="id_contact_phone">{{ form.contact_phone.label }} *</label>
               {{ form.contact_phone }}
-              {% if form.contact_phone.errors %}<div style="color:var(--danger); font-size:12px;">{{ form.contact_phone.errors }}</div>{% endif %}
+              <span class="form-hint">В формате: +7 (999) 000-00-00</span>
+              <div class="client-error-msg"></div>
+              {% if form.contact_phone.errors %}<div class="form-field-error">{{ form.contact_phone.errors }}</div>{% endif %}
             </div>
           </div>
 
-          <div style="margin-bottom: 16px;">
-            <label class="filter-title" for="id_delivery_address">{{ form.delivery_address.label }}</label>
+          <div class="form-group">
+            <label class="form-label" for="id_delivery_address">{{ form.delivery_address.label }}</label>
             {{ form.delivery_address }}
+            <span class="form-hint">Укажите адрес в Москве или оставьте пустым для самовывоза с Арбата, 25</span>
           </div>
 
-          <div>
-            <label class="filter-title" for="id_comment">{{ form.comment.label }}</label>
+          <div class="form-group">
+            <label class="form-label" for="id_comment">{{ form.comment.label }}</label>
             {{ form.comment }}
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
 
-      <!-- Правая колонка: плавающая карточка расчета и подтверждения -->
-      <div>
+      <!-- Правая колонка: плавающая смета и валидация лимита -->
+      <aside class="builder-summary-col" aria-label="Смета заказа">
         <div class="live-summary-sticky">
-          <div class="summary-header">Калькулятор заказа</div>
+          <h2 class="summary-header">Смета заказа онлайн</h2>
 
-          <!-- Блок расчетной цены (Особое требование Варианта 1) -->
-          <div class="live-price-box">
-            <div class="live-price-label">Итоговая расчётная цена:</div>
-            <div class="live-price-val" id="live-price-val">0 руб.</div>
-            <small style="color:var(--text-muted); font-size:11px;">Расчёт по формуле: вес × тариф начинки + корж + декор</small>
+          <!-- Блок расчетной цены (fetch) -->
+          <div class="summary-price-box">
+            <span class="price-box-label">
+              Итого к оплате:
+              <span id="calc-spinner" class="calc-spinner" style="display:none;" aria-label="Идет перерасчет цены..."></span>
+            </span>
+            <span class="price-box-val" id="live-price-val">0 ₽</span>
+          </div>
+          <span class="form-hint">Формула: вес × начинка + надбавка коржа + декор</span>
+
+          <!-- Блок проверки суточного лимита мощности цеха -->
+          <div id="date-status-box" class="alert alert-info">
+            <strong>📅 Укажите дату выдачи:</strong> система проверит доступность смены кондитеров.
           </div>
 
-          <!-- Блок проверки суточного лимита цеха (Особое требование Варианта 1) -->
-          <div id="date-status-box" class="date-status-card alert-info">
-            <strong>📅 Укажите дату выдачи:</strong> система проверит доступность суточной смены цеха.
+          <div class="security-guarantee-box">
+            🔒 <strong>Гарантия цеха:</strong> При оформлении заказ фиксируется в атомарной транзакции БД, бронируя мощность цеха.
           </div>
 
-          <div style="font-size:13px; color:var(--text-muted); line-height:1.6; margin-bottom:20px;">
-            🔒 <strong>Гарантия цеха:</strong> При создании заказа бронь суточного веса фиксируется в базе данных в атомарной транзакции.
-          </div>
-
-          <button type="submit" id="submit-order-btn" class="btn btn-primary btn-lg" style="width:100%;">
+          <button type="submit" id="submit-order-btn" class="btn btn-primary btn-lg btn-block">
             🚀 Оформить заказ торта
           </button>
         </div>
+      </aside>
+    </div>
+
+    <!-- Мобильный плавающий бар цены (Sticky Bottom Bar для экранов 360–768 px) -->
+    <div class="mobile-sticky-order-bar" aria-label="Плавающая панель заказа">
+      <div>
+        <span class="mobile-bar-label">Итого: </span>
+        <strong class="mobile-bar-price" id="mobile-live-price">0 ₽</strong>
       </div>
+      <button type="submit" class="btn btn-accent btn-sm">Заказать →</button>
     </div>
   </form>
 {% endblock %}

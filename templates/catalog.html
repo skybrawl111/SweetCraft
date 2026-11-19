@@ -1,30 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Каталог тортов и десертов — Кондитерская «SweetCraft»{% endblock %}
+{% block title %}Каталог тортов и авторских десертов — Кондитерская «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div class="section-header">
+  <header class="section-header">
     <div>
-      <h1 class="section-title">Каталог авторских тортов</h1>
-      <p style="color: var(--text-muted); font-size: 14px;">Поиск по вкусам, основам и начинкам. Любой торт можно скорректировать по весу и декору.</p>
+      <h1 class="page-title">Каталог авторских десертов</h1>
+      <p class="section-subtitle">Поиск по рецептурам, основам и начинкам цеха. Любой десерт можно адаптировать в конструкторе.</p>
     </div>
     <a href="{% url 'cake_builder' %}" class="btn btn-primary">✨ Собрать свой торт с нуля</a>
-  </div>
+  </header>
 
   <div class="catalog-layout">
-    <!-- Боковая панель поиска и фильтров (п. 6) -->
-    <aside class="catalog-sidebar">
-      <form method="get" action="{% url 'catalog' %}">
-        <!-- Поиск по тексту -->
-        <div class="filter-group">
-          <label class="filter-title" for="search-input">Поиск по названию</label>
+    <!-- Боковая панель фасетных фильтров -->
+    <aside class="catalog-sidebar" aria-label="Фильтры десертов">
+      <h2 class="sidebar-title">Параметры выбора</h2>
+      <form method="get" action="{% url 'catalog' %}" class="filters-form">
+        <!-- Поиск по названию -->
+        <div class="form-group">
+          <label class="form-label" for="search-input">Поиск по рецептуре</label>
           <input type="text" id="search-input" name="q" value="{{ q }}" class="form-control" placeholder="Например: Шоколадный, ягодный...">
         </div>
 
         <!-- Фильтр 1: Вид коржа -->
-        <div class="filter-group">
-          <label class="filter-title" for="crust-select">Вид коржа (основа)</label>
+        <div class="form-group">
+          <label class="form-label" for="crust-select">Основа торта (бисквит)</label>
           <select id="crust-select" name="crust" class="form-select">
             <option value="">Все виды коржей</option>
             {% for c in crusts %}
@@ -36,10 +37,10 @@
         </div>
 
         <!-- Фильтр 2: Начинка -->
-        <div class="filter-group">
-          <label class="filter-title" for="filling-select">Начинка</label>
+        <div class="form-group">
+          <label class="form-label" for="filling-select">Начинка</label>
           <select id="filling-select" name="filling" class="form-select">
-            <option value="">Все начинки</option>
+            <option value="">Все начинки цеха</option>
             {% for f in fillings %}
               <option value="{{ f.id }}" {% if selected_filling == f.id|stringformat:"s" %}selected{% endif %}>
                 {{ f.name }}
@@ -49,82 +50,100 @@
         </div>
 
         <!-- Фильтр 3: Максимальная цена -->
-        <div class="filter-group">
-          <label class="filter-title" for="price-input">Цена до (руб.)</label>
+        <div class="form-group">
+          <label class="form-label" for="price-input">Предельная цена (до ₽)</label>
           <input type="number" id="price-input" name="max_price" value="{{ selected_max_price }}" class="form-control" placeholder="3500" step="100">
         </div>
 
-        <!-- Сортировка по 3 полям (п. 6) -->
-        <div class="filter-group">
-          <label class="filter-title" for="sort-select">Сортировка</label>
+        <!-- Сортировка -->
+        <div class="form-group">
+          <label class="form-label" for="sort-select">Сортировка</label>
           <select id="sort-select" name="sort" class="form-select">
-            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>По новизне (сначала новые)</option>
+            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>По новизне (сначала свежие)</option>
             <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>По возрастанию цены</option>
             <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>По убыванию цены</option>
-            <option value="title" {% if sort == 'title' %}selected{% endif %}>По названию (А-Я)</option>
+            <option value="title" {% if sort == 'title' %}selected{% endif %}>По названию (А–Я)</option>
           </select>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <button type="submit" class="btn btn-primary" style="width:100%;">Применить фильтры</button>
-          <a href="{% url 'catalog' %}" class="btn btn-secondary" style="width:100%;">Сбросить</a>
+        <div class="filters-actions">
+          <button type="submit" class="btn btn-primary btn-block">Применить фильтры</button>
+          <a href="{% url 'catalog' %}" class="btn btn-secondary btn-block">Сбросить</a>
         </div>
       </form>
     </aside>
 
-    <!-- Основной список товаров -->
-    <main>
+    <!-- Основной контент каталога -->
+    <section class="catalog-content">
+      <!-- Панель быстрого живого поиска и счетчик -->
+      <div class="catalog-toolbar">
+        <div class="catalog-count-badge">
+          Найдено позиций: <strong>{{ page_obj.paginator.count }}</strong>
+        </div>
+        <div class="search-input-wrap">
+          <input type="search" id="catalog-live-search" class="form-control" placeholder="Быстрый фильтр на странице..." aria-label="Быстрый фильтр десертов">
+        </div>
+      </div>
+
+      {% if q %}
+        <div class="search-results-alert alert alert-info">
+          Результаты поиска по запросу «<strong>{{ q }}</strong>»: найдено {{ page_obj.paginator.count }} десертов
+        </div>
+      {% endif %}
+
       {% if page_obj %}
         <div class="cakes-grid">
           {% for cake in page_obj %}
-            <div class="cake-card">
+            <article class="cake-card catalog-cake-card" data-title="{{ cake.title|lower }}" data-desc="{{ cake.description|lower }}">
               <div class="cake-img-wrap">
                 {% if cake.image %}
-                  <img src="{{ cake.image.url }}" alt="{{ cake.title }}">
+                  <img src="{{ cake.image.url }}" alt="Десерт {{ cake.title }}" width="380" height="240" loading="lazy">
                 {% else %}
-                  🎂
+                  <div class="cake-img-placeholder" aria-label="Изображение десерта {{ cake.title }}">🎂</div>
                 {% endif %}
               </div>
               <div class="cake-card-body">
-                <a href="{% url 'cake_detail' cake.slug %}" class="cake-card-title">{{ cake.title }}</a>
-                <div style="font-size:12px; color:var(--accent); font-weight:600; margin-bottom:6px;">
-                  Корж: {{ cake.crust_type.name|default:"По выбору" }}
+                <h3 class="cake-card-title">
+                  <a href="{% url 'cake_detail' cake.slug %}">{{ cake.title }}</a>
+                </h3>
+                <div class="cake-card-meta">
+                  Основа: <strong>{{ cake.crust_type.name|default:"По выбору" }}</strong>
                 </div>
-                <p class="cake-card-desc">{{ cake.description }}</p>
+                <p class="cake-card-desc">{{ cake.description|truncatechars:95 }}</p>
                 <div class="cake-card-footer">
                   <div class="cake-price">
-                    от {{ cake.base_price }} ₽
-                    <span>/ {{ cake.default_weight }} кг</span>
+                    от {{ cake.base_price|floatformat:0 }} ₽
+                    <span class="cake-price-unit">/ {{ cake.default_weight|floatformat:1 }} кг</span>
                   </div>
-                  <div style="display:flex; gap:6px;">
-                    <a href="{% url 'cake_detail' cake.slug %}" class="btn btn-secondary btn-sm">Инфо</a>
+                  <div class="card-btn-group">
+                    <a href="{% url 'cake_detail' cake.slug %}" class="btn btn-secondary btn-sm">О десерте</a>
                     <a href="{% url 'cake_builder' %}?base_cake={{ cake.id }}" class="btn btn-primary btn-sm">Заказ</a>
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           {% endfor %}
         </div>
 
-        <!-- Пагинация по 20 записей с сохранением параметров GET (п. 6) -->
+        <!-- Пагинация по 20 записей (п. 2 Занятия 8) -->
         {% if page_obj.paginator.num_pages > 1 %}
-          <nav>
+          <nav aria-label="Пагинация каталога">
             <ul class="pagination">
               {% if page_obj.has_previous %}
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}">«</a>
+                <li>
+                  <a class="page-btn" href="?page={{ page_obj.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}" aria-label="Предыдущая страница">« Назад</a>
                 </li>
               {% endif %}
 
               {% for p_num in page_obj.paginator.page_range %}
-                <li class="page-item {% if page_obj.number == p_num %}active{% endif %}">
-                  <a class="page-link" href="?page={{ p_num }}{% if querystring %}&{{ querystring }}{% endif %}">{{ p_num }}</a>
+                <li>
+                  <a class="page-btn {% if page_obj.number == p_num %}active{% endif %}" href="?page={{ p_num }}{% if querystring %}&{{ querystring }}{% endif %}">{{ p_num }}</a>
                 </li>
               {% endfor %}
 
               {% if page_obj.has_next %}
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}">»</a>
+                <li>
+                  <a class="page-btn" href="?page={{ page_obj.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}" aria-label="Следующая страница">Вперед »</a>
                 </li>
               {% endif %}
             </ul>
@@ -132,13 +151,13 @@
         {% endif %}
 
       {% else %}
-        <div style="background:#FFF; padding:40px; border-radius:var(--radius-md); text-align:center; border:1px solid var(--border-color);">
-          <div style="font-size:48px; margin-bottom:12px;">🔍</div>
-          <h3>По вашим фильтрам ничего не найдено</h3>
-          <p style="color:var(--text-muted); margin-bottom:20px;">Попробуйте смягчить условия поиска или сбросить фильтры.</p>
+        <div class="empty-state-card">
+          <div class="empty-state-icon" aria-hidden="true">🔍</div>
+          <h2 class="empty-state-title">По заданным критериям ничего не найдено</h2>
+          <p class="empty-state-desc">Попробуйте смягчить условия поиска или выберите другой тип бисквита.</p>
           <a href="{% url 'catalog' %}" class="btn btn-secondary">Сбросить все фильтры</a>
         </div>
       {% endif %}
-    </main>
+    </section>
   </div>
 {% endblock %}

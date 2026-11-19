@@ -4,155 +4,126 @@
 {% block title %}Заказ №{{ order.id }} — Кондитерская «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div style="margin-bottom: 20px; display:flex; justify-content:space-between; align-items:center;">
-    <a href="{% url 'order_list' %}" style="text-decoration:none; color:var(--text-muted); font-size:14px; font-weight:600;">
-      ← Вернуться к списку заказов
-    </a>
-    <div style="display:flex; gap:10px;">
-      <a href="{% url 'order_print' order.id %}" target="_blank" class="btn btn-secondary btn-sm">
-        🖨️ Печатная технологическая карта (п. 10)
+  <nav class="breadcrumb-nav">
+    <a href="{% url 'order_list' %}" class="breadcrumb-link">← Вернуться к списку заказов</a>
+    <div class="header-actions">
+      <a href="{% url 'order_print' order.id %}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+        🖨️ Печать техкарты
       </a>
       {% if order.status == 'NEW' and user == order.customer %}
         <a href="{% url 'order_cancel' order.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите отменить этот заказ?');">
-          Отменить заказ (п. 5)
+          Отменить заказ
         </a>
       {% endif %}
     </div>
-  </div>
+  </nav>
 
-  <div class="builder-layout">
-    <!-- Левая колонка: состав заказа и эскизы -->
-    <div>
-      <div class="builder-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid var(--border-color); padding-bottom:12px;">
-          <h1 style="font-size: 24px; font-weight: 800;">Заказ №{{ order.id }}</h1>
-          <div>
-            {% if order.status == 'NEW' %}
-              <span class="badge badge-new" style="font-size:14px; padding:6px 12px;">Новый (на рассмотрении)</span>
-            {% elif order.status == 'ACCEPTED' %}
-              <span class="badge badge-accepted" style="font-size:14px; padding:6px 12px;">Принят в работу</span>
-            {% elif order.status == 'IN_PROGRESS' %}
-              <span class="badge badge-in_progress" style="font-size:14px; padding:6px 12px;">В работе цеха</span>
-            {% elif order.status == 'READY' %}
-              <span class="badge badge-ready" style="font-size:14px; padding:6px 12px;">Готов к выдаче</span>
-            {% elif order.status == 'COMPLETED' %}
-              <span class="badge badge-completed" style="font-size:14px; padding:6px 12px;">Выдан покупателю</span>
-            {% elif order.status == 'CANCELLED' %}
-              <span class="badge badge-cancelled" style="font-size:14px; padding:6px 12px;">Отменён</span>
-            {% endif %}
-          </div>
-        </div>
+  <div class="order-detail-layout">
+    <div class="order-detail-main">
+      <article class="builder-step-card">
+        <header class="order-card-header">
+          <h1 class="page-title">Наряд-заказ №{{ order.id }}</h1>
+          <span class="status-badge status-{{ order.status|lower }}">{{ order.get_status_display }}</span>
+        </header>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; font-size:14px; margin-bottom:24px;">
+        <div class="order-meta-grid">
           <div>
-            <div style="color:var(--text-muted);">Дата оформления:</div>
+            <div class="meta-label">Дата оформления:</div>
             <strong>{{ order.created_at|date:"d.m.Y H:i" }}</strong>
           </div>
           <div>
-            <div style="color:var(--text-muted);">Дата готовности / выдачи:</div>
-            <strong style="color:var(--primary);">{{ order.delivery_date|date:"d.m.Y" }}</strong>
+            <div class="meta-label">Дата готовности / выдачи:</div>
+            <strong class="highlight-caramel">{{ order.delivery_date|date:"d.m.Y" }}</strong>
           </div>
           <div>
-            <div style="color:var(--text-muted);">Покупатель:</div>
+            <div class="meta-label">Клиент:</div>
             <strong>{{ order.customer.first_name|default:order.customer.username }} ({{ order.customer.email }})</strong>
           </div>
           <div>
-            <div style="color:var(--text-muted);">Телефон для связи:</div>
+            <div class="meta-label">Телефон:</div>
             <strong>{{ order.contact_phone }}</strong>
           </div>
-          <div style="grid-column: 1 / -1;">
-            <div style="color:var(--text-muted);">Адрес получения:</div>
+          <div class="meta-full-width">
+            <div class="meta-label">Адрес доставки:</div>
             <strong>{{ order.delivery_address|default:"Самовывоз из кондитерского цеха (ул. Арбат, д. 25)" }}</strong>
           </div>
           {% if order.comment %}
-            <div style="grid-column: 1 / -1;">
-              <div style="color:var(--text-muted);">Пожелания к заказу:</div>
-              <p style="background:var(--bg-body); padding:10px; border-radius:var(--radius-sm); margin-top:4px;">{{ order.comment }}</p>
+            <div class="meta-full-width">
+              <div class="meta-label">Пожелания клиента:</div>
+              <p class="order-comment-box">{{ order.comment }}</p>
             </div>
           {% endif %}
         </div>
 
-        <h2 class="builder-section-title">Состав заказа (позиции)</h2>
+        <h2 class="step-title">Состав позиций торта</h2>
         {% for item in order.items.all %}
-          <div style="background:var(--bg-body); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:16px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
-              <div>
-                <h3 style="font-size:18px; font-weight:700;">{{ item.base_cake.title|default:"Индивидуальный торт" }}</h3>
-                <span class="role-pill">Вес изделия: {{ item.weight }} кг</span>
-              </div>
-              <div style="font-size:18px; font-weight:800; color:var(--primary);">
-                {{ item.item_price }} ₽
-              </div>
+          <div class="order-item-card">
+            <div class="item-card-top">
+              <h3 class="item-cake-title">{{ item.base_cake.title|default:"Индивидуальный заказной торт" }}</h3>
+              <span class="item-price-val">{{ item.item_price|floatformat:0 }} ₽</span>
             </div>
 
-            <ul style="list-style:none; line-height:1.8; font-size:14px; margin-bottom:12px;">
-              <li><strong>Корж (бисквит):</strong> {{ item.crust_type.name }}</li>
-              <li><strong>Начинка:</strong> {{ item.filling.name }} ({{ item.filling.price_per_kg }} руб./кг)</li>
+            <ul class="item-specs-list">
+              <li><strong>Масса изделия:</strong> {{ item.weight|floatformat:1 }} кг</li>
+              <li><strong>Основа (корж):</strong> {{ item.crust_type.name }}</li>
+              <li><strong>Начинка:</strong> {{ item.filling.name }}</li>
               {% if item.text_on_cake %}
-                <li><strong>Надпись на торте:</strong> ✍️ «{{ item.text_on_cake }}»</li>
+                <li><strong>Надпись на торте:</strong> «{{ item.text_on_cake }}»</li>
               {% endif %}
             </ul>
 
-            <!-- Выбранные элементы декора -->
-            {% if item.decorations.all %}
-              <div style="margin-top:10px;">
-                <strong style="font-size:13px; color:var(--text-muted);">Элементы декора:</strong>
-                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
-                  {% for d in item.decorations.all %}
-                    <span style="background:#FFF; border:1px solid var(--border-color); padding:4px 8px; border-radius:12px; font-size:12px;">
-                      ✨ {{ d.name }} (+{{ d.cost }} ₽)
-                    </span>
+            {% if item.item_decorations.all %}
+              <div class="decor-summary-box">
+                <strong>Выбранный сложный декор:</strong>
+                <ul>
+                  {% for dec in item.item_decorations.all %}
+                    <li>{{ dec.decoration.name }} (+{{ dec.decoration.cost|floatformat:0 }} ₽)</li>
                   {% endfor %}
-                </div>
+                </ul>
               </div>
             {% endif %}
 
-            <!-- Загруженные эскизы / фото оформления (п. 9 требований) -->
             {% if item.sketches.all %}
-              <div style="margin-top:16px; border-top:1px dashed var(--border-color); padding-top:12px;">
-                <strong style="font-size:13px; color:var(--text-muted);">Прикреплённые эскизы оформления:</strong>
-                <div style="display:flex; gap:12px; margin-top:8px; flex-wrap:wrap;">
-                  {% for sketch in item.sketches.all %}
-                    <div style="width:140px; height:140px; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border-color); position:relative;">
-                      <a href="{{ sketch.image.url }}" target="_blank">
-                        <img src="{{ sketch.image.url }}" alt="Эскиз" style="width:100%; height:100%; object-fit:cover;">
-                      </a>
-                    </div>
+              <div class="sketch-gallery">
+                <strong>Прикрепленный эскиз декора:</strong>
+                <div class="sketch-grid">
+                  {% for sk in item.sketches.all %}
+                    <a href="{{ sk.sketch_image.url }}" target="_blank" rel="noopener">
+                      <img src="{{ sk.sketch_image.url }}" alt="Эскиз декора торта" width="160" height="120" loading="lazy">
+                    </a>
                   {% endfor %}
                 </div>
               </div>
             {% endif %}
           </div>
         {% endfor %}
-      </div>
+      </article>
     </div>
 
-    <!-- Правая колонка: статус и управление персоналом -->
-    <div>
+    <!-- Правая колонка: итого и статус заказа для персонала -->
+    <aside class="order-detail-aside">
       <div class="live-summary-sticky">
-        <div class="summary-header">Финансовая сводка</div>
-        <div class="live-price-box">
-          <div class="live-price-label">Сумма к оплате:</div>
-          <div class="live-price-val">{{ order.total_price }} ₽</div>
-          <small style="color:var(--text-muted); font-size:12px;">Предоплата 50% при согласовании с менеджером</small>
+        <h2 class="summary-header">Финансовая сводка</h2>
+        <div class="summary-price-box">
+          <span class="price-box-label">Итоговая сумма:</span>
+          <span class="price-box-val">{{ order.total_price|floatformat:0 }} ₽</span>
         </div>
+        <p class="form-hint">Включает стоимость бисквита, авторской начинки и надбавки за сложный декор.</p>
 
-        <!-- Панель смены статуса (для персонала кондитерской, п. 4, 11) -->
-        {% if status_form %}
-          <div style="border-top:1px solid var(--border-color); padding-top:18px; margin-top:18px;">
-            <h4 style="font-size:14px; font-weight:700; margin-bottom:10px;">🛠️ Управление заказом (Цех):</h4>
+        {% if user.is_manager_or_admin or user.role == 'confectioner' %}
+          <div class="status-manage-card">
+            <h3 class="info-card-title">Управление статусом наряда</h3>
             <form method="post" action="{% url 'order_status_update' order.id %}">
               {% csrf_token %}
-              <div style="margin-bottom:12px;">
+              <div class="form-group">
+                <label class="form-label" for="id_status">Изменить статус:</label>
                 {{ status_form.status }}
               </div>
-              <button type="submit" class="btn btn-secondary btn-sm" style="width:100%;">
-                Обновить статус и уведомить клиента (Email)
-              </button>
+              <button type="submit" class="btn btn-primary btn-block">Сохранить статус</button>
             </form>
           </div>
         {% endif %}
       </div>
-    </div>
+    </aside>
   </div>
 {% endblock %}

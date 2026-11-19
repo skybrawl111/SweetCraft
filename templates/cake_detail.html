@@ -1,117 +1,116 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ cake.title }} — Кондитерская «SweetCraft»{% endblock %}
+{% block title %}{{ cake.title }} — Авторский торт кондитерской «SweetCraft»{% endblock %}
 
 {% block content %}
-  <div style="margin-bottom: 20px;">
-    <a href="{% url 'catalog' %}" style="text-decoration:none; color:var(--text-muted); font-size:14px; font-weight:600;">
-      ← Вернуться в каталог
-    </a>
-  </div>
+  <nav class="breadcrumb-nav" aria-label="Хлебные крошки">
+    <a href="{% url 'catalog' %}" class="breadcrumb-link">← Вернуться в каталог десертов</a>
+  </nav>
 
-  <div class="cake-detail-grid">
-    <!-- Изображение торта -->
-    <div>
-      <div style="width:100%; height:380px; background:var(--bg-subtle); border-radius:var(--radius-md); overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:80px; border:1px solid var(--border-color);">
+  <article class="cake-detail-grid">
+    <!-- Изображение десерта -->
+    <div class="cake-detail-media">
+      <div class="cake-detail-image-box">
         {% if cake.image %}
-          <img src="{{ cake.image.url }}" alt="{{ cake.title }}" style="width:100%; height:100%; object-fit:cover;">
+          <img src="{{ cake.image.url }}" alt="Торт {{ cake.title }}" width="560" height="420" loading="eager">
         {% else %}
-          🎂
+          <div class="cake-detail-placeholder" aria-label="Изображение торта {{ cake.title }}">🎂</div>
         {% endif %}
       </div>
     </div>
 
-    <!-- Описание и параметры торта -->
-    <div>
-      <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 12px;">{{ cake.title }}</h1>
-      <div style="font-size: 26px; font-weight: 900; color: var(--primary); margin-bottom: 20px;">
-        от {{ cake.base_price }} ₽
-        <span style="font-size: 14px; font-weight: 400; color: var(--text-muted);">/ стандартный вес {{ cake.default_weight }} кг</span>
+    <!-- Описание и свойства десерта -->
+    <div class="cake-detail-info">
+      <h1 class="page-title">{{ cake.title }}</h1>
+      <div class="cake-detail-price-row">
+        <span class="detail-price-val">от {{ cake.base_price|floatformat:0 }} ₽</span>
+        <span class="detail-price-desc">/ стандартная масса {{ cake.default_weight|floatformat:1 }} кг</span>
       </div>
 
-      <div style="background:var(--bg-card); padding:20px; border-radius:var(--radius-md); border:1px solid var(--border-color); margin-bottom:24px;">
-        <h3 style="font-size:16px; margin-bottom:10px;">Характеристики основы:</h3>
-        <ul style="list-style:none; line-height:1.8; font-size:14px;">
-          <li><strong>Рекомендуемый корж:</strong> {{ cake.crust_type.name|default:"Любой на выбор" }}</li>
+      <div class="detail-specs-card">
+        <h2 class="specs-title">Технологические характеристики:</h2>
+        <ul class="specs-list">
+          <li><strong>Рекомендуемая основа:</strong> {{ cake.crust_type.name|default:"Любой бисквит на выбор" }}</li>
           <li><strong>Совместимые начинки:</strong> 
-            {% for f in cake.available_fillings.all %}
-              <span class="role-pill">{{ f.name }}</span>
-            {% empty %}
-              Все начинки цеха
-            {% endfor %}
+            <div class="fillings-pill-wrap">
+              {% for f in cake.available_fillings.all %}
+                <span class="role-pill">{{ f.name }}</span>
+              {% empty %}
+                <span class="role-pill">Все начинки цеха</span>
+              {% endfor %}
+            </div>
           </li>
-          <li><strong>Срок годности:</strong> 72 часа при температуре +2..+6°C (по СанПиН)</li>
+          <li><strong>Срок реализации:</strong> 72 часа при температуре +2..+6°C (по СанПиН)</li>
         </ul>
       </div>
 
-      <p style="font-size: 15px; color: var(--text-main); line-height: 1.7; margin-bottom: 26px;">
-        {{ cake.description }}
-      </p>
+      <div class="detail-desc-text">
+        <p>{{ cake.description }}</p>
+      </div>
 
-      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <div class="detail-actions">
         <a href="{% url 'cake_builder' %}?base_cake={{ cake.id }}" class="btn btn-primary btn-lg">
-          ✨ Заказать этот торт в конструкторе
+          ✨ Собрать свой торт на основе этого десерта
         </a>
       </div>
     </div>
-  </div>
+  </article>
 
-  <!-- Блок отзывов (CRUD п. 5) -->
-  <section style="margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px;">
+  <!-- Блок отзывов покупателей (CRUD: Create, Read, Delete) -->
+  <section class="reviews-section detail-reviews-section" aria-labelledby="cake-reviews-title">
     <div class="section-header">
       <div>
-        <h2 class="section-title">Отзывы о торте ({{ reviews.count }})</h2>
-        <p style="color: var(--text-muted); font-size: 14px;">Оценки и впечатления покупателей, заказавших этот десерт</p>
+        <h2 class="section-title" id="cake-reviews-title">Отзывы о десерте ({{ reviews.count }})</h2>
+        <p class="section-subtitle">Оценки и реальные впечатления покупателей, заказавших этот торт</p>
       </div>
     </div>
 
-    <!-- Форма добавления отзыва (CRUD: Create) -->
+    <!-- Форма добавления отзыва -->
     {% if user.is_authenticated %}
-      <div style="background:var(--bg-card); padding:22px; border-radius:var(--radius-md); border:1px solid var(--border-color); margin-bottom:30px;">
-        <h3 style="font-size:16px; font-weight:700; margin-bottom:12px;">Оставить свой отзыв</h3>
-        <form method="post" action="{% url 'review_create' cake.id %}">
+      <div class="review-form-card">
+        <h3 class="review-form-title">Оставить отзыв о десерте</h3>
+        <form method="post" action="{% url 'review_create' cake.id %}" class="validated-form">
           {% csrf_token %}
-          <div style="margin-bottom:14px; max-width:300px;">
-            <label style="font-size:13px; font-weight:600; display:block; margin-bottom:6px;">Ваша оценка:</label>
+          <div class="form-group rating-form-group">
+            <label class="form-label" for="id_rating">Ваша оценка (1–5 звезд):</label>
             {{ review_form.rating }}
           </div>
-          <div style="margin-bottom:14px;">
-            <label style="font-size:13px; font-weight:600; display:block; margin-bottom:6px;">Текст отзыва:</label>
+          <div class="form-group">
+            <label class="form-label" for="id_text">Текст вашего отзыва:</label>
             {{ review_form.text }}
           </div>
           <button type="submit" class="btn btn-primary">Опубликовать отзыв</button>
         </form>
       </div>
     {% else %}
-      <div class="alert alert-info" style="margin-bottom:24px;">
-        Чтобы оставить отзыв, пожалуйста, <a href="{% url 'login' %}?next={{ request.path }}">войдите в учётную запись</a>.
+      <div class="alert alert-info">
+        Чтобы оставить свой отзыв, пожалуйста, <a href="{% url 'login' %}?next={{ request.path }}">войдите в учетную запись</a>.
       </div>
     {% endif %}
 
-    <!-- Список отзывов (CRUD: Read, Update, Delete) -->
-    <div class="reviews-list">
+    <!-- Список отзывов -->
+    <div class="reviews-grid">
       {% for r in reviews %}
-        <div class="review-item">
+        <article class="review-item">
           <div class="review-header">
             <div>
-              <span class="review-author">👤 {{ r.customer.first_name|default:r.customer.username }}</span>
-              <span class="review-stars" style="margin-left: 8px;">{{ r.get_rating_display }}</span>
+              <h3 class="review-author">👤 {{ r.customer.first_name|default:r.customer.username }}</h3>
+              <span class="review-stars">{{ r.get_rating_display }}</span>
             </div>
-            <div>
-              <span class="review-date">{{ r.created_at|date:"d.m.Y H:i" }}</span>
-              {% if user == r.customer or user.is_manager_or_admin %}
-                <span style="margin-left: 10px;">
-                  <a href="{% url 'review_edit' r.id %}" style="font-size:12px; color:var(--info); margin-right:6px;">Редактировать</a>
-                  <a href="{% url 'review_delete' r.id %}" style="font-size:12px; color:var(--danger);">Удалить</a>
-                </span>
-              {% endif %}
-            </div>
+            {% if user == r.customer or user.is_manager_or_admin %}
+              <div class="review-manage-links">
+                <a href="{% url 'review_delete' r.id %}" class="review-delete-btn" aria-label="Удалить отзыв">Удалить</a>
+              </div>
+            {% endif %}
           </div>
-          <p style="font-size: 14px; color: var(--text-main); margin-top: 6px;">{{ r.text }}</p>
-        </div>
+          <p class="review-text">{{ r.text }}</p>
+          <footer class="review-footer">
+            Дата публикации: <time datetime="{{ r.created_at|date:'Y-m-d' }}">{{ r.created_at|date:"d.m.Y H:i" }}</time>
+          </footer>
+        </article>
       {% empty %}
-        <p style="color:var(--text-muted); font-size:14px;">Пока нет отзывов на этот торт. Будьте первым, кто поделится впечатлениями!</p>
+        <p class="empty-hint">Пока нет отзывов об этом десерте. Вы можете стать первым!</p>
       {% endfor %}
     </div>
   </section>
